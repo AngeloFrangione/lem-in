@@ -19,7 +19,7 @@ void	ft_search_ants(t_info *info)
 		ft_saveline(info);
 		if (ft_isant_number(info))
 			break ;
-		else if (ft_iscommand(info) || ft_iscomment(info))
+		else if (ft_iscommand(info) || ft_iscomment(info) > 0)
 			continue ;
 		else
 			ft_throw_error(E_WRONG_ANT_NUMBER, info);
@@ -35,6 +35,7 @@ void	ft_search_link(t_info *info)
 	{
 		if (!ft_islink(info))
 			ft_throw_error(0, info);
+		ft_saveline(info);
 		ft_strdel(&info->buff);
 	}
 	while (get_next_line(0, &info->buff))
@@ -45,7 +46,7 @@ void	ft_search_link(t_info *info)
 			ft_strdel(&info->buff);
 			continue ;
 		}
-		else if (ft_iscommand(info) || ft_iscomment(info))
+		else if (ft_iscommand(info) > 0 && ft_iscomment(info))
 		{
 			ft_saveline(info);
 			continue ;
@@ -66,7 +67,7 @@ void	ft_search_rooms(t_info *info)
 			ft_strdel(&info->buff);
 			continue ;
 		}
-		else if (ft_iscommand(info) || ft_iscomment(info))
+		else if (ft_iscommand(info) > 0 && ft_iscomment(info))
 		{
 			ft_saveline(info);
 			continue ;

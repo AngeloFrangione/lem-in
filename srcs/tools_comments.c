@@ -23,12 +23,16 @@ int		ft_iscommand(t_info *info)
 {
 	if (ft_strequ(info->buff, "##start"))
 	{
+		if (info->start == TRUE || info->start == 2)
+			return (-1);
 		info->start = TRUE;
 		(!info->ants) ? ft_throw_error(E_START_BEFORE_ANT, info) : 0;
 		return (TRUE);
 	}
 	else if (ft_strequ(info->buff, "##end"))
 	{
+		if (info->end == TRUE || info->end == 2)
+			return (-1);
 		info->end = TRUE;
 		(!info->ants) ? ft_throw_error(E_END_BEFORE_ANT, info) : 0;
 		return (TRUE);
