@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 13:09:34 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 18:46:54 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct		s_info
 	int				start;
 	int				end;
 }					t_info;
+
+void	clean(t_info *info);
 
 /*
 ** parsing.c

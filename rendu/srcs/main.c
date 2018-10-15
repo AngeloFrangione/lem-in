@@ -6,11 +6,32 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 13:10:10 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 18:50:02 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	clean(t_info *info)
+{
+	t_room *tmp;
+	t_tube *tmp_t;
+
+	while (info->room)
+	{
+		tmp = info->room->next;
+		ft_strdel(&info->room->name);
+		while (info->room->tubes)
+		{
+			tmp_t = info->room->tubes->next;
+			ft_strdel(&info->room->tubes->connection);
+			ft_memdel((void*)&info->room->tubes);
+			info->room->tubes = tmp_t;
+		}
+		ft_memdel((void*)&info->room);
+		info->room = tmp;
+	}
+}
 
 void	print_rooms(t_room *begin_node)
 {
@@ -48,7 +69,8 @@ int		main(void)
 	ft_search_rooms(info);
 	ft_search_links(info);
 	ft_putendl(info->file);
-	print_rooms(info->room);
+	// print_rooms(info->room);
+	clean(info);
 	ft_strdel(&info->file);
 	free(info);
 	return (0);
