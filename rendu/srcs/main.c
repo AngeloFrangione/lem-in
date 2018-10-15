@@ -6,13 +6,13 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/14 20:05:36 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:10:10 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		print_rooms(t_room *begin_node)
+void	print_rooms(t_room *begin_node)
 {
 	while (begin_node)
 	{
@@ -44,10 +44,9 @@ int		main(void)
 	t_info *info;
 
 	info = ft_memalloc(sizeof(t_info));
-
 	ft_search_ants(info);
 	ft_search_rooms(info);
-	ft_search_link(info);
+	ft_search_links(info);
 	ft_putendl(info->file);
 	print_rooms(info->room);
 	ft_strdel(&info->file);

@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/14 19:10:05 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:09:34 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_info
 ** parsing.c
 */
 void				ft_search_ants(t_info *info);
-void				ft_search_link(t_info *info);
+void				ft_search_links(t_info *info);
 void				ft_search_rooms(t_info *info);
 /*
 ** tools_comments.c
@@ -70,11 +70,15 @@ void				ft_saveline(t_info *info);
 /*
 ** tools_rooms.c
 */
-int		ft_isroom(t_info *info);
+int					ft_isroom(t_info *info);
+void				ft_setend(t_info *info);
+void				ft_setstart(t_info *info);
+int					ft_isvalid_room_name(char *s);
+int					ft_isnumber(char *s);
 /*
 ** tools_links.c
 */
-int		ft_islink(t_info *info);
+int					ft_islink(t_info *info);
 /*
 ** errors.c
 */
@@ -86,5 +90,12 @@ t_room				*create_room(char *name);
 void				add_room(t_room **begin_node, char *name);
 t_tube				*create_tube(char *connection);
 void				add_tube(t_tube **begin_node, char *connection);
+/*
+** run_through.c
+*/
+int					start_available(t_info *info);
+int					end_available(t_info *info);
+int					startend_available(t_info *info);
+int					check_room_duplicates(t_info *info, char *name);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:49:36 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/14 20:46:25 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:10:56 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int		ft_isnumber(char *s)
+int			ft_isnumber(char *s)
 {
 	int i;
 
@@ -34,21 +34,7 @@ static int		ft_isnumber(char *s)
 	return (1);
 }
 
-int				check_room_duplicates(t_info *info, char *name)
-{
-	t_room *tmp;
-
-	tmp = info->room;
-	while (tmp)
-	{
-		if (ft_strequ(name, tmp->name))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-static int		ft_isvalid_room_name(char *s)
+int			ft_isvalid_room_name(char *s)
 {
 	int i;
 
@@ -84,9 +70,7 @@ void		ft_setend(t_info *info)
 	info->end = 2;
 }
 
-
-
-int				ft_isroom(t_info *info)
+int			ft_isroom(t_info *info)
 {
 	char	**split;
 	int		i;

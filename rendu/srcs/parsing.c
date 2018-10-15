@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 14:59:13 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/14 16:48:40 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/15 13:06:09 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,6 @@ void	ft_search_ants(t_info *info)
 	ft_strdel(&info->buff);
 }
 
-void	ft_search_link(t_info *info)
-{
-	if (info->buff)
-	{
-		if (!ft_islink(info))
-			ft_throw_error(0, info);
-		ft_saveline(info);
-		ft_strdel(&info->buff);
-	}
-	while (get_next_line(0, &info->buff))
-	{
-		if (ft_islink(info))
-		{
-			ft_saveline(info);
-			ft_strdel(&info->buff);
-			continue ;
-		}
-		else if (ft_iscommand(info) > 0 && ft_iscomment(info))
-		{
-			ft_saveline(info);
-			continue ;
-		}
-		else
-			break ;
-	}
-	ft_strdel(&info->buff);
-}
-
 void	ft_search_rooms(t_info *info)
 {
 	while (get_next_line(0, &info->buff))
@@ -75,4 +47,33 @@ void	ft_search_rooms(t_info *info)
 		else
 			break ;
 	}
+}
+
+void	ft_search_links(t_info *info)
+{
+	if (info->buff)
+	{
+		if (!ft_islink(info) || !(startend_available(info)))
+			ft_throw_error(0, info);
+		ft_saveline(info);
+		ft_strdel(&info->buff);
+	}
+	while (get_next_line(0, &info->buff))
+	{
+		if (ft_islink(info))
+		{
+			ft_saveline(info);
+			ft_strdel(&info->buff);
+			continue ;
+		}
+		else if ((ft_iscommand(info) > 0 && ft_iscomment(info)) && \
+				(startend_available(info)))
+		{
+			ft_saveline(info);
+			continue ;
+		}
+		else
+			break ;
+	}
+	ft_strdel(&info->buff);
 }
