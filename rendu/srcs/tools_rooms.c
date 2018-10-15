@@ -62,6 +62,30 @@ static int		ft_isvalid_room_name(char *s)
 	return (1);
 }
 
+void		ft_setstart(t_info *info)
+{
+	t_room *tmp;
+
+	tmp = info->room;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->start = 1;
+	info->start = 2;
+}
+
+void		ft_setend(t_info *info)
+{
+	t_room *tmp;
+
+	tmp = info->room;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->end = 1;
+	info->end = 2;
+}
+
+
+
 int				ft_isroom(t_info *info)
 {
 	char	**split;
@@ -85,8 +109,8 @@ int				ft_isroom(t_info *info)
 	if (check_room_duplicates(info, split[0]))
 		return (0);
 	add_room(&info->room, ft_strdup(split[0]));
-	// if (info->start == 1)
-		// ft_setstart()
+	(info->start == 1) ? ft_setstart(info) : 0;
+	(info->end == 1) ? ft_setend(info) : 0;
 	free_charofchar(split);
 	return (1);
 }
