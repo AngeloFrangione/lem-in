@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 16:07:06 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/16 17:59:58 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_room
 
 typedef struct		s_info
 {
+	t_paths			*paths;
 	t_room			*room;
 	// t_room		*room_i_was;
 	char			*file;
@@ -52,6 +53,7 @@ typedef struct		s_info
 	int				start;
 	int				end;
 	int				error_no_exit;
+
 }					t_info;
 
 typedef struct		s_paths
