@@ -35,7 +35,7 @@ void	ft_search_rooms(t_info *info)
 	{
 		if (!info->buff)
 			ft_throw_error(E_EMPTY_LINE_ROOM, info);
-		if (ft_isroom(info) || ft_iscomment(info) > 0)
+		if (ft_iscomment(info) > 0 || ft_isroom(info))
 		{
 			ft_saveline(info);
 			ft_strdel(&info->buff);
@@ -59,18 +59,19 @@ void	ft_search_links(t_info *info)
 	{
 		if (!info->buff)
 			break ;
-		if (ft_islink(info) > 0)
+		if (ft_iscomment(info) > 0)
 		{
 			ft_saveline(info);
 			ft_strdel(&info->buff);
 			continue ;
 		}
-		else if (ft_iscomment(info) > 0)
+		else if (ft_islink(info) > 0)
 		{
 			ft_saveline(info);
 			ft_strdel(&info->buff);
 			continue ;
 		}
+
 		else
 			break ;
 	}
