@@ -44,6 +44,19 @@ void	ft_addlink(t_info *info, char *room, char *link)
 	}
 }
 
+int		ft_check_room_exists(t_info *info, char *name)
+{
+	t_room *tmp;
+
+	tmp = info->room;
+	while (tmp)
+	{
+		if (ft_strequ(tmp->name, name))
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
 
 int		ft_islink(t_info *info)
 {
@@ -62,6 +75,9 @@ int		ft_islink(t_info *info)
 		return (0);
 	}
 	if (ft_strequ(split[0], split[1]))
+		return (-1);
+	if (!ft_check_room_exists(info, split[0]) ||
+		!ft_check_room_exists(info, split[1]))
 		return (-1);
 	ft_addlink(info, split[0], split[1]);
 	ft_addlink(info, split[1], split[0]);
