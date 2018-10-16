@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 17:59:37 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 18:03:03 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ void	print_rooms(t_room *begin_node)
 	}
 }
 
-// int		ft_explore(t_room *graph, char *s, t_info *info)
-// {
-
-// 	return (1);
-// }
-
 int		main(void)
 {
 	t_info *info;
@@ -74,10 +68,7 @@ int		main(void)
 	ft_search_ants(info);
 	ft_search_rooms(info);
 	ft_search_links(info);
-	// ft_explore(get_starting_room(info));
-
 	ft_putendl(info->file);
-
 //	 print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
