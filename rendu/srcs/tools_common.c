@@ -23,8 +23,8 @@ void	ft_saveline(t_info *info)
 		newsize = sizeof(char) * ft_strlen(info->file) + ft_strlen(info->buff);
 		info->file = ft_realloc(info->file, newsize + sizeof(char) * 2);
 	}
-	ft_strcat(info->file, "\n");
 	ft_strcat(info->file, info->buff);
+	ft_strcat(info->file, "\n");
 }
 
 void	free_charofchar(char **table)
