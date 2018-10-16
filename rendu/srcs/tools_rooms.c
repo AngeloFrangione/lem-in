@@ -80,7 +80,6 @@ int			ft_isroom(t_info *info)
 	i = 0;
 	while (info->split[i])
 		i++;
-	printf("split = %d\n", i);
 	if (i != 3)
 	{
 		free_charofchar(info->split);
