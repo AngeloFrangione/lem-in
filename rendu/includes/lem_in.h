@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 18:46:54 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 16:07:06 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # define E_WRONG_ANT_NUMBER -1
 # define E_START_BEFORE_ANT -2
 # define E_END_BEFORE_ANT -3
+# define E_EMPTY_LINE_ROOM -4
+# define E_DUPLICATE_ROOM -4
+# define E_WRONG_ROOM_NAME -5
+# define E_WRONG_LINE -6
 
 typedef struct		s_tube
 {
@@ -43,9 +47,11 @@ typedef struct		s_info
 	// t_room		*room_i_was;
 	char			*file;
 	char			*buff;
+	char			**split;
 	int				ants;
 	int				start;
 	int				end;
+	int				error_no_exit;
 }					t_info;
 
 typedef struct		s_paths

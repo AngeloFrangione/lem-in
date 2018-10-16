@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:50:04 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 18:41:13 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 16:08:52 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		ft_islink(t_info *info)
 		i++;
 	if (i != 2)
 	{
+		info->error_no_exit = -7;
 		free_charofchar(split);
 		return (0);
 	}

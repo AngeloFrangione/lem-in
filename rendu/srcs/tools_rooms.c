@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:49:36 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 13:10:56 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 15:59:59 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,26 @@ void		ft_setend(t_info *info)
 
 int			ft_isroom(t_info *info)
 {
-	char	**split;
 	int		i;
 
-	split = ft_strsplit(info->buff, ' ');
+	info->split = ft_strsplit(info->buff, ' ');
 	i = 0;
-	while (split[i])
+	while (info->split[i])
 		i++;
+	printf("split = %d\n", i);
 	if (i != 3)
 	{
-		free_charofchar(split);
+		free_charofchar(info->split);
 		return (0);
 	}
-	if (!ft_isvalid_room_name(split[0]) || !ft_isnumber(split[1]) || \
-		!ft_isnumber(split[2]))
-	{
-		free_charofchar(split);
-		return (0);
-	}
-	if (check_room_duplicates(info, split[0]))
-		return (0);
-	add_room(&info->room, ft_strdup(split[0]));
+	if (!ft_isvalid_room_name(info->split[0]) || !ft_isnumber(info->split[1]) || \
+		!ft_isnumber(info->split[2]))
+		ft_throw_error(E_WRONG_ROOM_NAME, info);
+	if (check_room_duplicates(info, info->split[0]))
+		ft_throw_error(E_DUPLICATE_ROOM, info);
+	add_room(&info->room, ft_strdup(info->split[0]));
 	(info->start == 1) ? ft_setstart(info) : 0;
 	(info->end == 1) ? ft_setend(info) : 0;
-	free_charofchar(split);
+	free_charofchar(info->split);
 	return (1);
 }

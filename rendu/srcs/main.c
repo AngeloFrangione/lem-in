@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 18:50:02 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 16:10:52 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		main(void)
 
 	ft_putendl(info->file);
 
-	// print_rooms(info->room);
+//	 print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
 	free(info);

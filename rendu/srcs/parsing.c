@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 14:59:13 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/15 18:50:44 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 15:32:41 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	ft_search_ants(t_info *info)
 {
 	while (get_next_line(0, &info->buff))
 	{
-		ft_saveline(info);
 		if (ft_isant_number(info))
 			break ;
-		else if (ft_iscomment(info) > 0)
-			continue ;
-		else
+		else if (!(ft_iscomment(info) > 0))
 			ft_throw_error(E_WRONG_ANT_NUMBER, info);
+		ft_saveline(info);
+		ft_strdel(&info->buff);
 	}
+	ft_saveline(info);
 	info->ants = ft_isant_number(info);
 	(!info->ants) ? ft_throw_error(E_WRONG_ANT_NUMBER, info) : 0;
 	ft_strdel(&info->buff);
@@ -34,14 +34,8 @@ void	ft_search_rooms(t_info *info)
 	while (get_next_line(0, &info->buff))
 	{
 		if (!info->buff)
-			break ;
-		if (ft_isroom(info))
-		{
-			ft_saveline(info);
-			ft_strdel(&info->buff);
-			continue ;
-		}
-		else if (ft_iscomment(info) > 0)
+			ft_throw_error(E_EMPTY_LINE_ROOM, info);
+		if (ft_isroom(info) || ft_iscomment(info) > 0)
 		{
 			ft_saveline(info);
 			ft_strdel(&info->buff);
