@@ -39,8 +39,8 @@ void	free_charofchar(char **table)
 			ft_strdel(&table[i]);
 			i++;
 		}
-	if (*table)
-		free(table);
+		if (*table)
+			free(table);
 	}
 	table = NULL;
 }

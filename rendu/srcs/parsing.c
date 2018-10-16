@@ -71,7 +71,6 @@ void	ft_search_links(t_info *info)
 			ft_strdel(&info->buff);
 			continue ;
 		}
-
 		else
 			break ;
 	}
