@@ -32,11 +32,15 @@ void	free_charofchar(char **table)
 	int i;
 
 	i = 0;
-	while (table[i])
+	if (table)
 	{
-		ft_strdel(&table[i]);
-		i++;
+		while (table[i])
+		{
+			ft_strdel(&table[i]);
+			i++;
+		}
+	if (*table)
+		free(table);
 	}
-	free(table);
 	table = NULL;
 }
