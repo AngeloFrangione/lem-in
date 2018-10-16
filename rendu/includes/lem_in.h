@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 18:01:37 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 19:45:21 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct		s_tube
 
 typedef struct		s_room
 {
+	//t_room			**connections;
 	struct s_room	*next;
 	t_tube			*tubes;
 	char			*name;
@@ -41,9 +42,17 @@ typedef struct		s_room
 	int				end;
 }					t_room;
 
+typedef struct		s_paths
+{
+	struct s_paths	*next;
+	t_room			**a_path;
+	// int			size;
+	int				id;
+}					t_paths;
+
 typedef struct		s_info
 {
-	t_paths			*paths;
+	t_paths			*first_path;
 	t_room			*room;
 	// t_room		*room_i_was;
 	char			*file;
@@ -53,16 +62,9 @@ typedef struct		s_info
 	int				start;
 	int				end;
 	int				error_no_exit;
+	int				nb_paths;
 
 }					t_info;
-
-typedef struct		s_paths
-{
-	struct s_paths	*next;
-	char			**a_path;
-	// int			size;
-	int				id;
-}					t_paths;
 
 //TEMPORY MAIN//
 void	clean(t_info *info);
@@ -70,12 +72,19 @@ void	clean(t_info *info);
 /*
 ** algo.c
 */
+int find_path(t_info *info, t_room *start);
 /*
 ** tools_algo.c
 */
 t_room	*get_room(t_info *info, char *s);
 t_room	*get_starting_room(t_info *info);
 int		ft_count_links(t_room *room);
+/*
+** node_path.c
+*/
+void	print_paths(t_paths *begin_node);
+void		add_path(t_paths **begin_node, int id);
+t_paths		*create_path(int id);
 /*
 ** parsing.c
 */

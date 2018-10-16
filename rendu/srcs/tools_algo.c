@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:50:12 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 18:00:04 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 18:51:52 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ t_room	*get_starting_room(t_info *info)
 
 int		ft_count_links(t_room *room)
 {
-	t_tubes *tmp;
+	t_tube *tmp;
 	int		i;
 
 	i = 0;
 	if (room->tubes)
 	{
+		tmp = room->tubes;
 		i = 1;
 		while (tmp)
 		{
