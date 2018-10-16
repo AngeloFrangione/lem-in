@@ -36,9 +36,7 @@ void	ft_addlink(t_info *info, char *room, char *link)
 		if (ft_strequ(tmp->name, room))
 		{
 			if (!ft_check_link_exists(tmp, link))
-			{
 				add_tube(&tmp->tubes, ft_strdup(link));
-			}
 		}
 		tmp = tmp->next;
 	}

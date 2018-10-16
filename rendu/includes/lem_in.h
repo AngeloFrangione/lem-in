@@ -30,9 +30,9 @@ typedef struct		s_tube
 
 typedef struct		s_room
 {
-	char			*name;
 	struct s_room	*next;
 	t_tube			*tubes;
+	char			*name;
 	int				start;
 	int				end;
 }					t_room;
@@ -40,12 +40,22 @@ typedef struct		s_room
 typedef struct		s_info
 {
 	t_room			*room;
+	// t_room		*room_i_was;
 	char			*file;
 	char			*buff;
 	int				ants;
 	int				start;
 	int				end;
 }					t_info;
+
+typedef struct		s_paths
+{
+	struct s_paths	*next;
+	char			**a_path;
+	// int			size;
+	int				id;
+}					t_paths;
+
 
 void	clean(t_info *info);
 

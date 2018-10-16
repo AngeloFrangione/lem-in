@@ -1,8 +1,20 @@
 13
+fillit 0 0
 ##start
 libft 0 0
-##end
-fillit 0 0
 gnl 0 0
-ewf-ewfj
-ewf-fxf
+##end
+corewar 0 0
+printf 0 0
+filler 0 0
+push_swap 0 0
+lem_in 0 0
+libft-fillit
+fillit-libft
+gnl-fillit
+printf-gnl
+printf-filler
+push_swap-printf
+lem_in-filler
+push_swap-lem_in
+corewar-lem_in

@@ -29,7 +29,7 @@ int		ft_iscomment(t_info *info)
 		info->end = TRUE;
 		(!info->ants) ? ft_throw_error(E_END_BEFORE_ANT, info) : 0;
 		return (TRUE);
-	}	
+	}
 	else if (info->buff[0] == '#')
 		return (TRUE);
 	return (FALSE);

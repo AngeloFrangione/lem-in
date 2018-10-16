@@ -60,6 +60,40 @@ void	print_rooms(t_room *begin_node)
 	}
 }
 
+// t_room	*get_room(t_info *info, char *s)
+// {
+// 	t_room *tmp;
+
+// 	tmp = info->room;
+// 	while (tmp)
+// 	{
+// 		if (ft_strequ(s, tmp->name))
+// 			return (tmp);
+// 		tmp = tmp->next;
+// 	}
+// 	return (NULL);
+// }
+
+// t_room	*get_starting_room(t_info *info)
+// {
+// 	t_room *tmp;
+
+// 	tmp = info->room;
+// 	while (tmp)
+// 	{
+// 		if (tmp->start)
+// 			return (tmp);
+// 		tmp = tmp->next;
+// 	}
+// 	return (NULL);
+// }
+
+// int		ft_explore(t_room *graph, char *s, t_info *info)
+// {
+
+// 	return (1);
+// }
+
 int		main(void)
 {
 	t_info *info;
@@ -68,7 +102,10 @@ int		main(void)
 	ft_search_ants(info);
 	ft_search_rooms(info);
 	ft_search_links(info);
+	// ft_explore(get_starting_room(info));
+
 	ft_putendl(info->file);
+
 	// print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
