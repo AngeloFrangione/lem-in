@@ -14,13 +14,6 @@
 
 int		ft_iscomment(t_info *info)
 {
-	if (info->buff[0] == '#')
-		return (TRUE);
-	return (FALSE);
-}
-
-int		ft_iscommand(t_info *info)
-{
 	if (ft_strequ(info->buff, "##start"))
 	{
 		if (info->start == TRUE || info->start == 2 || info->end == 1)
@@ -36,8 +29,8 @@ int		ft_iscommand(t_info *info)
 		info->end = TRUE;
 		(!info->ants) ? ft_throw_error(E_END_BEFORE_ANT, info) : 0;
 		return (TRUE);
-	}
-	else if (info->buff[0] == '#' && info->buff[1] == '#')
+	}	
+	else if (info->buff[0] == '#')
 		return (TRUE);
 	return (FALSE);
 }
