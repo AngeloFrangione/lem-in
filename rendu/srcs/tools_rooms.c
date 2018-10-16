@@ -39,6 +39,8 @@ int			ft_isvalid_room_name(char *s)
 	int i;
 
 	i = 0;
+	if (s[i] == 'L')
+		return (0);
 	while (s[i])
 	{
 		if (!ft_isprint(s[i]) || s[i] == '-')
