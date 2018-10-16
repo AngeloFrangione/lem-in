@@ -33,6 +33,8 @@ void	ft_search_rooms(t_info *info)
 {
 	while (get_next_line(0, &info->buff))
 	{
+		if (!info->buff)
+			break ;
 		if (ft_isroom(info))
 		{
 			ft_saveline(info);
@@ -41,7 +43,6 @@ void	ft_search_rooms(t_info *info)
 		}
 		else if (ft_iscomment(info) > 0)
 		{
-
 			ft_saveline(info);
 			ft_strdel(&info->buff);
 			continue ;
@@ -62,6 +63,8 @@ void	ft_search_links(t_info *info)
 	}
 	while (get_next_line(0, &info->buff))
 	{
+		if (!info->buff)
+			break ;
 		if (ft_islink(info) > 0)
 		{
 			ft_saveline(info);
