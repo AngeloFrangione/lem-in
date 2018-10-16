@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 17:59:58 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/16 18:01:37 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,18 @@ typedef struct		s_paths
 	int				id;
 }					t_paths;
 
-
+//TEMPORY MAIN//
 void	clean(t_info *info);
 
+/*
+** algo.c
+*/
+/*
+** tools_algo.c
+*/
+t_room	*get_room(t_info *info, char *s);
+t_room	*get_starting_room(t_info *info);
+int		ft_count_links(t_room *room);
 /*
 ** parsing.c
 */
