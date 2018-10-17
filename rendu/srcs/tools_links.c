@@ -26,6 +26,33 @@ int		ft_check_link_exists(t_room *room, char *connection)
 	return (0);
 }
 
+int		ft_check_link_exists_2(t_room *room, char *connection)
+{
+	int i;
+
+	i = 0;
+	while ((room->links[i]))
+	{
+		if (room->links[i]->name)
+			if (ft_strequ((room->links[i])->name, connection))
+				return (1);
+		i++;
+	}
+	return (0);
+}
+
+
+void	ft_assignlink(t_room *room, t_room *link)
+{
+	int i;
+
+	i = 0;
+	while (room->links[i])
+		i++;
+	room->links = ft_memrealloc(room->links, sizeof(t_room) * (i),sizeof(t_room) * (i + 1));
+	room->links[i] = link;
+}
+
 void	ft_addlink(t_info *info, char *room, char *link)
 {
 	t_room *tmp;
@@ -40,6 +67,17 @@ void	ft_addlink(t_info *info, char *room, char *link)
 		}
 		tmp = tmp->next;
 	}
+	tmp = info->room;
+	while (tmp)
+	{
+		if (ft_strequ(tmp->name, room))
+		{
+			if (!ft_check_link_exists_2(tmp, link))
+				ft_assignlink(tmp, get_room(info, link));
+		}
+		tmp = tmp->next;
+	}
+
 }
 
 int		ft_check_room_exists(t_info *info, char *name)

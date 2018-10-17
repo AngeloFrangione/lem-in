@@ -23,3 +23,15 @@ void	*ft_realloc(char *mem, size_t size)
 	free(mem);
 	return (temp);
 }
+
+void	*ft_memrealloc(void *mem, size_t previous, size_t size)
+{
+	char *temp;
+
+	temp = ft_memalloc(size);
+	if (!temp)
+		return (NULL);
+	ft_memcpy(temp, mem, previous);
+	free(mem);
+	return (temp);
+}

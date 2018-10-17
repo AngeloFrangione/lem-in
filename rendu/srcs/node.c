@@ -22,6 +22,7 @@ t_room		*create_room(char *name)
 	{
 		node->name = name;
 		node->next = NULL;
+		node->links = ft_memalloc(sizeof(t_room) * 2);
 	}
 	return (node);
 }

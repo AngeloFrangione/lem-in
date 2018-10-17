@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 12:28:55 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/14 12:52:55 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/16 17:59:12 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	free_charofchar(char **table)
 			ft_strdel(&table[i]);
 			i++;
 		}
-		if (*table)
-			free(table);
+		free(table);
 	}
 	table = NULL;
 }

@@ -16,7 +16,7 @@ void	ft_throw_error(int error, t_info *info)
 {
 	ft_strdel(&info->file);
 	ft_strdel(&info->buff);
-	free_charofchar(info->split);
+	// free_charofchar(info->split);
 	clean(info);
 	free(info);
 	ft_putendl_fd("Error", 2);

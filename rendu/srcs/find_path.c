@@ -12,7 +12,17 @@
 
 #include "lem_in.h"
 
-int find_path(t_info *info, t_room *start)
+int		ft_count_links_2(t_room *room)
+{
+	int		i;
+
+	i = 0;
+	while (room->links[i])
+		i++;
+	return (i);
+}
+
+int		find_path(t_info *info, t_room *start)
 {
 	int nb_links;
 	t_paths *path;	
@@ -21,12 +31,13 @@ int find_path(t_info *info, t_room *start)
 
 	info->first_path = create_path(info->nb_paths);
 	path = info->first_path;
-	nb_links = ft_count_links(start);
+	nb_links = ft_count_links_2(start);
 	//debuguer count_links
-	while (info->nb_paths < nb_links-1)
+	while (info->nb_paths < nb_links)
 	{
-		path->a_path[0] = get_room(info, start->tubes->connection);
-		start->tubes = start->tubes->next;
+		// path->a_path[0] = get_room(info, start->tubes->connection);
+		path->a_path[0] = start->links[info->nb_paths];
+		// start->tubes = start->tubes->next;
 		ft_putnbr(info->nb_paths);
 		print_paths(path);
 		info->nb_paths++;

@@ -34,9 +34,9 @@ typedef struct		s_tube
 
 typedef struct		s_room
 {
-	//t_room			**connections;
+	struct s_room	**links;
 	struct s_room	*next;
-	t_tube			*tubes;
+	struct s_tube	*tubes;
 	char			*name;
 	int				start;
 	int				end;
@@ -45,7 +45,7 @@ typedef struct		s_room
 typedef struct		s_paths
 {
 	struct s_paths	*next;
-	t_room			**a_path;
+	struct s_room	**a_path;
 	// int			size;
 	int				id;
 }					t_paths;

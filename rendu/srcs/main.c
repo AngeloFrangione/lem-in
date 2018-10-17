@@ -19,6 +19,7 @@ void	clean(t_info *info)
 
 	while (info->room)
 	{
+		free(info->room->links);
 		tmp = info->room->next;
 		ft_strdel(&info->room->name);
 		while (info->room->tubes)
@@ -28,6 +29,7 @@ void	clean(t_info *info)
 			ft_memdel((void*)&info->room->tubes);
 			info->room->tubes = tmp_t;
 		}
+		// ft_memdel(info->room->links);
 		ft_memdel((void*)&info->room);
 		info->room = tmp;
 	}
@@ -70,7 +72,7 @@ int		main(void)
 	ft_search_links(info);
 	ft_putendl(info->file);
 	find_path(info, get_starting_room(info));
-//	 print_rooms(info->room);
+	// print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
 	free(info);

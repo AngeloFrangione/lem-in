@@ -30,5 +30,6 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_realloc(char *mem, size_t size);
 void			ft_swap(int *a, int *b);
+void			*ft_memrealloc(void *mem, size_t previous, size_t size);
 
 #endif
