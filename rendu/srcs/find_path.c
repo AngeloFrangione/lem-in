@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/16 19:44:49 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/17 16:29:52 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,56 @@ int		ft_count_links_2(t_room *room)
 	int		i;
 
 	i = 0;
-	while (room->links[i])
+	while (room->links[i] )
 		i++;
 	return (i);
+}
+
+int		path_recursion(t_info *info, t_path *this)
+{
+	int nb_links;
+	int i;
+	int j;
+	
+	i = 0;
+	
+	while (this->a_paths[this->size]->links[i])
+	{
+		j = 0;
+		while (this->a-path[j])
+		{
+			if (this->a_paths[this->size]->links[i] == this->a_path[j])
+			{
+				i++;
+				break ;
+			}
+			j++
+		}
+		if (this->a-path[j] == this->a_path[this->size])
+		{
+	//		if (nb_valid_links > 1)
+	//		{
+	//			copy(this)//jusqu'à size
+	//		}
+			a_path realloc = link(room);
+			valid_links++;
+			i++
+		}
+//		nb_links = ft_count_links_2(this_path->a_paths[this_path->size]);
+//		while (
+//		while (nb_links > 1)
+//			copy_path(this_path);
+		
+
+	}
+	if (valid_links > 0)
+		this->size++;
+	if (info->nb_ways != info->nb_solution)
+	{
+		//current_path = first_path;
+		path_recursion(info, firstpath)
+	}
+
 }
 
 int		find_path(t_info *info, t_room *start)
@@ -32,18 +79,19 @@ int		find_path(t_info *info, t_room *start)
 	info->first_path = create_path(info->nb_paths);
 	path = info->first_path;
 	nb_links = ft_count_links_2(start);
-	//debuguer count_links
+	// stocker la start en a_path[0]
 	while (info->nb_paths < nb_links)
 	{
 		// path->a_path[0] = get_room(info, start->tubes->connection);
 		path->a_path[0] = start->links[info->nb_paths];
 		// start->tubes = start->tubes->next;
 		ft_putnbr(info->nb_paths);
-		print_paths(path);
+	//	print_paths(path);
 		info->nb_paths++;
 		path = path->next;
 		add_path(&path, info->nb_paths);
 	}
+	path_recursion(info, 
 	return (0);
 }
 

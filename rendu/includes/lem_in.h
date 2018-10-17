@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 19:45:21 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/17 16:30:13 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int					ft_islink(t_info *info);
 ** errors.c
 */
 void				ft_throw_error(int error, t_info *info);
+void				ft_throw_error_coc(int error, t_info *info);
 /*
 ** node.c
 */

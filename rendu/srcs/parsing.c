@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 14:59:13 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 15:32:41 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/17 16:29:57 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_search_links(t_info *info)
 		else
 			break ;
 	}
+	ft_strdel(&info->buff);
 	ft_strdel(&info->buff);
 }
