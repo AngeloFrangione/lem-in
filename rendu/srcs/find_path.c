@@ -50,16 +50,26 @@ t_paths		*path_recursion(t_info *info, t_paths *this_p, t_room *start)
 	int i;
 
 	i = 0;
+	while (!(this_p->a_path[this_p->size])->end)
+	{
 	while ((this_p->a_path[this_p->size])->links[i])
 	{
 		int next;
 		next =  sizeof(t_room*) * (this_p->size + 2);
 		this_p->a_path = realloc(this_p->a_path, next);
+		this_p->a_path[this_p->size + 1] = NULL;
 		if (!ft_search_in_paths(info, (this_p->a_path[this_p->size])->links[i], start))
 		{
+			// if (ft_count_links_2((this_p->a_path[this_p->size])->links[i]) > 1)
+				;
+				// Copy
+				// Store in copy this path + linked room
+				// When links empty kill parents (keep only children)
+
 			this_p->a_path[this_p->size + 1] = this_p->a_path[this_p->size]->links[i];
 			this_p->size++;
-			path_recursion(info, this_p, start);
+			// else
+				// path_recursion(info, this_p, start);
 		}
 		else
 			this_p->a_path[this_p->size + 1] = NULL;
@@ -69,8 +79,13 @@ t_paths		*path_recursion(t_info *info, t_paths *this_p, t_room *start)
 		// return (this_p);
 	if (this_p->next && this_p->next->a_path[0])
 		path_recursion(info, this_p->next, start);
+	if (this_p->a_path[this_p->size + 1] != NULL)
+		path_recursion(info, this_p, start);
 	// path_recursion(info, this_p, start);
+	this_p = info->first_path;
+	}
 	return (NULL);
+
 }
 
 int		find_path(t_info *info, t_room *start)
