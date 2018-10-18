@@ -47,12 +47,14 @@ void	print_paths(t_paths *begin_node)
 	int i;
 
 	i = 0;
-//	while (begin_node)
-//	{
-		while (begin_node->a_path[i])
+	while (begin_node->next)
+	{
+		ft_putstr("{\x1B[32m");
+		ft_putnbr(begin_node->id);
+		i = 0;
+		while (i <= begin_node->size)
 		{
-			ft_putstr("{\x1B[32m");
-			ft_putnbr(i);
+			
 			ft_putstr("\e[m[\x1B[35m");
 			ft_putstr(begin_node->a_path[i]->name);
 			ft_putstr("==>");
@@ -61,8 +63,8 @@ void	print_paths(t_paths *begin_node)
 		ft_putstr("\e[m]");
 		ft_putchar('}');
 		ft_putstr("\n");
-//		if (begin_node->next)
-//			ft_putstr("\n");
-	//	begin_node = begin_node->next;
-//	}
+		// if (begin_node->next)
+			// ft_putstr("\n");
+		begin_node = begin_node->next;
+	}
 }

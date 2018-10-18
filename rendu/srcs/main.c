@@ -37,16 +37,19 @@ void	clean(t_info *info)
 
 void	print_rooms(t_room *begin_node)
 {
+	int i;
 	while (begin_node)
 	{
+		i = 0;
 		ft_putstr("{\x1B[32m");
 		ft_putstr(begin_node->name);
 		ft_putstr("\e[m[\x1B[35m");
-		while (begin_node->tubes)
+		while (begin_node->links[i])
 		{
-			ft_putstr(begin_node->tubes->connection);
-			(begin_node->tubes->next) ? ft_putchar(',') : 0;
-			begin_node->tubes = begin_node->tubes->next;
+			ft_putstr(begin_node->links[i]->name);
+			// (begin_node->links[i]) ? ft_putchar(',') : 0;
+			// begin_node->tubes = begin_node->tubes->next;
+			i++;
 		}
 		ft_putstr("\e[m]");
 		ft_putchar('}');

@@ -22,65 +22,47 @@ int		ft_count_links_2(t_room *room)
 	return (i);
 }
 
-int		path_recursion(t_info *info, t_path *this, t_room *start)
+int		path_recursion(t_info *info, t_paths *this_p, t_room *start)
 {
 	int nb_links;
+	int	nb_valid_links;
 	int i;
 	int j;
 	
 	i = 0;
-	
-	while (this->a_paths[this->size]->links[i])
+	nb_links = ft_count_links_2(start);
+	while ((this_p->a_path[this_p->size])->links[i])
 	{
-		j = 0;
-		while (this->a-path[j] || this->a_path[j] == this->a_path[this->size])
+		j = -1;
+		while (j < this_p->size)
 		{
-			if (this->a_paths[this->size]->links[i] == this->a_path[j]
-					|| this->a_path[j] = info->start)
-			{
-				i++;
+			if (this_p->a_path[this_p->size]->links[i] == this_p->a_path[j]
+					|| this_p->a_path[this_p->size]->links[i] == start)
 				break ;
-			}
-			j++
+			j++;
 		}
-		if (this->a_path[j] == this->a_path[this->size])
+		if (this_p->a_path[j] == this_p->a_path[this_p->size])
 		{
-	//		if (nb_valid_links > 1)
-	//		{
-	//		memcopy ? j (taille du path)
-	//			copy(this)//jusqu'à size
-	//			Changement de path(prendre l'id de la copy pour add le link)
-	//		}
-			a_path realloc = link(room);
-			// ajoute this->a_paths[this->size]->links[i] dans this->a_path
-			valid_links++;
-			i++
+			int previous;
+			int next;
+			next =  sizeof(t_room*) * (this_p->size + 2);
+			this_p->a_path = realloc(this_p->a_path, next);
+			this_p->a_path[this_p->size + 1] = this_p->a_path[this_p->size]->links[i];
+			this_p->size++;
 		}
-//		nb_links = ft_count_links_2(this_path->a_paths[this_path->size]);
-//		while (
-//		while (nb_links > 1)
-//			copy_path(this_path);
-		
-
+		i++;
 	}
-	if (valid_links > 0)
-		this->size++;
-	if (info->nb_ways != info->nb_solution)
-	{
-		//current_path = first_path;
-		path_recursion(info, firstpath)
-	}
-//	while (other_path size < this->size)
-//		path_recursion;
-
+		// if (this_p->next)
+			// path_recursion(info, this_p->next, start);
+	return (0);
 }
 
 int		find_path(t_info *info, t_room *start)
 {
 	int nb_links;
 	t_paths *path;	
-	//t_room *tmp;
-	//tmp = start;
+	// t_room *tmp;
+	// tmp = start;
 
 	info->first_path = create_path(info->nb_paths);
 	path = info->first_path;
@@ -90,14 +72,87 @@ int		find_path(t_info *info, t_room *start)
 	{
 		// path->a_path[0] = get_room(info, start->tubes->connection);
 		path->a_path[0] = start->links[info->nb_paths];
+		// ft_putstr(start->links[0]);
 		// start->tubes = start->tubes->next;
-//		ft_putnbr(info->nb_paths);
-//		print_paths(path);
+		// ft_putnbr(info->nb_paths);
+		// print_paths(path);
 		info->nb_paths++;
-		path = path->next;
 		add_path(&path, info->nb_paths);
+		path = path->next;
 	}
 	path_recursion(info, info->first_path, start);
+	print_paths(info->first_path);
 	return (0);
 }
 
+// int		path_recursion(t_info *info, t_paths *this_p, t_room *start)
+// {
+// 	int nb_links;
+// 	int	nb_valid_links;
+// 	int i;
+// 	int j;
+	
+// 	i = 0;
+// 	nb_links = ft_count_links_2(start);
+// 	nb_valid_links = nb_links - 1;
+// 	while (this_p->a_path[this_p->size]->links[i]) // while
+// 	{
+// 		j = 0;
+// 		while (this_p->a_path[j] || this_p->a_path[j] == this_p->a_path[this_p->size])
+// 		{
+// 			if (this_p->a_path[this_p->size]->links[i] == this_p->a_path[j]
+// 					|| this_p->a_path[this_p->size]->links[i] == start)
+// 			{
+// 				i++;
+// 				break ;
+// 			}
+// 			j++;
+// 		}
+// 		// ft_putstr(" i:");
+// 		// ft_putnbr(i);
+// 		// ft_putstr(" j:");
+// 		// ft_putnbr(j);
+// 		if (this_p->a_path[j] == this_p->a_path[this_p->size])
+// 		{
+			
+// 			// if (nb_valid_links > 1)
+// 			// {
+// 			// memcopy ? j (taille du path)
+// 				// copy(this_p)//jusqu'à size
+// 				// Changement de path(prendre l'id de la copy pour add le link)
+// 			// }
+// 			// else if nb_valid_links == 1)
+// 			// {
+// 				int previous;
+// 				int next;
+
+// 				previous = sizeof(t_room*) * this_p->size + 1;
+// 				next =  sizeof(t_room*) * (this_p->size + 2);
+
+// 				this_p->a_path = realloc(this_p->a_path, next);
+// 				// this_p->size++;
+// 				this_p->a_path[this_p->size + 1] = this_p->a_path[this_p->size]->links[i];
+// 				// ft_putstr((this_p->a_path[this_p->size + 1])->name);
+// 				// ajoute this_p->a_paths[this_p->size]->links[i] dans this_p->a_path
+// 				// valid_links++;
+// 			// }
+// 			// i++;
+// 		}
+// 		// nb_links = ft_count_links_2(this_p_path->a_paths[this_p_path->size]);
+// 		// while (
+// 		// while (nb_links > 1)
+// 			// copy_path(this_p_path);
+// 		// i++;
+		
+// 	}
+// 	// if (valid_links > 0)
+// 		// this_p->size++;
+// 	// if (info->nb_ways != info->nb_solution)
+// 	// {
+// 		// current_path = first_path;
+// 		// path_recursion(info, firstpath);
+// 	// }
+// 	// while (other_path size < this_p->size)
+// 		// path_recursion;
+// 	return (0);
+// }
