@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/17 19:44:46 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 01:47:18 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_info
 {
 	t_paths			*first_path;
 	t_room			*room;
+	char			*mark;
 	char			*file;
 	char			*buff;
 	char			**split;

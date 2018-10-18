@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/17 19:44:40 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 01:48:29 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,141 +44,41 @@ int	ft_search_in_paths(t_info *info, t_room *room, t_room *start)
 	return (0);
 }
 
-
-t_paths		*path_recursion(t_info *info, t_paths *this_p, t_room *start)
+int	ismarked(t_info *info, t_room *sommet)
 {
-	int i;
-
-	i = 0;
-	while ((this_p->a_path[this_p->size])->links[i])
-	{
-		int next;
-		next =  sizeof(t_room*) * (this_p->size + 2);
-		this_p->a_path = realloc(this_p->a_path, next);
-		this_p->a_path[this_p->size + 1] = NULL;
-		if (!ft_search_in_paths(info, (this_p->a_path[this_p->size])->links[i], start))
-		{
-			// if (ft_count_links_2((this_p->a_path[this_p->size])->links[i]) > 1)
-				;
-				// Copy
-				// Store in copy this path + linked room
-				// When links empty kill parents (keep only children)
-
-			this_p->a_path[this_p->size + 1] = this_p->a_path[this_p->size]->links[i];
-			this_p->size++;
-			// else
-				// path_recursion(info, this_p, start);
-		}
-		else
-			this_p->a_path[this_p->size + 1] = NULL;
-		i++;
-	}
-	// if (((this_p->a_path[this_p->size])->links[i]) && ((this_p->a_path[this_p->size])->links[i])->end)
-		// return (this_p);
-	if (this_p->next && this_p->next->a_path[0])
-		path_recursion(info, this_p->next, start);
-	if (this_p->a_path[this_p->size + 1] != NULL)
-		// path_recursion(info, this_p, start);
-	path_recursion(info, this_p, start);
-	this_p = info->first_path;
-	return (NULL);
-}
-int		find_path(t_info *info, t_room *start)
-{
-	int nb_links;
-	t_paths *path;	
-	// t_room *tmp;
-	// tmp = start;
-
-	info->first_path = create_path(info->nb_paths);
-	path = info->first_path;
-	nb_links = ft_count_links_2(start);
-	// stocker la start en a_path[0]
-	while (info->nb_paths < nb_links)
-	{
-		// path->a_path[0] = get_room(info, start->tubes->connection);
-		path->a_path[0] = start->links[info->nb_paths];
-		// ft_putstr(start->links[0]);
-		// start->tubes = start->tubes->next;
-		// ft_putnbr(info->nb_paths);
-		// print_paths(path);
-		info->nb_paths++;
-		add_path(&path, info->nb_paths);
-		path = path->next;
-	}
-	path_recursion(info, info->first_path, start);
-	print_paths(info->first_path);
+	if (ft_strstr(info->mark, sommet->name))
+		return (1);
 	return (0);
 }
 
-// int		path_recursion(t_info *info, t_paths *this_p, t_room *start)
-// {
-// 	int nb_links;
-// 	int	nb_valid_links;
-// 	int i;
-// 	int j;
-	
-// 	i = 0;
-// 	nb_links = ft_count_links_2(start);
-// 	nb_valid_links = nb_links - 1;
-// 	while (this_p->a_path[this_p->size]->links[i]) // while
-// 	{
-// 		j = 0;
-// 		while (this_p->a_path[j] || this_p->a_path[j] == this_p->a_path[this_p->size])
-// 		{
-// 			if (this_p->a_path[this_p->size]->links[i] == this_p->a_path[j]
-// 					|| this_p->a_path[this_p->size]->links[i] == start)
-// 			{
-// 				i++;
-// 				break ;
-// 			}
-// 			j++;
-// 		}
-// 		// ft_putstr(" i:");
-// 		// ft_putnbr(i);
-// 		// ft_putstr(" j:");
-// 		// ft_putnbr(j);
-// 		if (this_p->a_path[j] == this_p->a_path[this_p->size])
-// 		{
-			
-// 			// if (nb_valid_links > 1)
-// 			// {
-// 			// memcopy ? j (taille du path)
-// 				// copy(this_p)//jusqu'à size
-// 				// Changement de path(prendre l'id de la copy pour add le link)
-// 			// }
-// 			// else if nb_valid_links == 1)
-// 			// {
-// 				int previous;
-// 				int next;
+void mark(t_info *info, t_room *sommet)
+{
+	if (!info->mark)
+	{
+		info->mark = ft_memalloc(sizeof(char) * ( 1 + ft_strlen(sommet->name)));
+		ft_strcat(info->mark, sommet->name);
+	}
+	else
+	{
+		info->mark = ft_realloc(info->mark, sizeof(char) * (ft_strlen(info->mark) + ft_strlen(sommet->name) + 2));
+		ft_strcat(info->mark, "-");
+		ft_strcat(info->mark, sommet->name);
 
-// 				previous = sizeof(t_room*) * this_p->size + 1;
-// 				next =  sizeof(t_room*) * (this_p->size + 2);
+	}
+}
 
-// 				this_p->a_path = realloc(this_p->a_path, next);
-// 				// this_p->size++;
-// 				this_p->a_path[this_p->size + 1] = this_p->a_path[this_p->size]->links[i];
-// 				// ft_putstr((this_p->a_path[this_p->size + 1])->name);
-// 				// ajoute this_p->a_paths[this_p->size]->links[i] dans this_p->a_path
-// 				// valid_links++;
-// 			// }
-// 			// i++;
-// 		}
-// 		// nb_links = ft_count_links_2(this_p_path->a_paths[this_p_path->size]);
-// 		// while (
-// 		// while (nb_links > 1)
-// 			// copy_path(this_p_path);
-// 		// i++;
-		
-// 	}
-// 	// if (valid_links > 0)
-// 		// this_p->size++;
-// 	// if (info->nb_ways != info->nb_solution)
-// 	// {
-// 		// current_path = first_path;
-// 		// path_recursion(info, firstpath);
-// 	// }
-// 	// while (other_path size < this_p->size)
-// 		// path_recursion;
-// 	return (0);
-// }
+int find_path(t_info *info, t_room *sommet)
+{
+	int		nb_links;
+
+	if (sommet->end)
+		return (1);
+	nb_links = ft_count_links_2(sommet);
+	mark(info, sommet);
+	// ft_putstr(sommet->name);
+	while (nb_links--)
+	{
+		if (!ismarked(info, sommet->links[nb_links]))
+			find_path(info, sommet->links[nb_links]);
+	}
+}
