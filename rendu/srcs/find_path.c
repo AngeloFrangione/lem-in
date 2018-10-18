@@ -50,8 +50,6 @@ t_paths		*path_recursion(t_info *info, t_paths *this_p, t_room *start)
 	int i;
 
 	i = 0;
-	while (!(this_p->a_path[this_p->size])->end)
-	{
 	while ((this_p->a_path[this_p->size])->links[i])
 	{
 		int next;
@@ -80,14 +78,11 @@ t_paths		*path_recursion(t_info *info, t_paths *this_p, t_room *start)
 	if (this_p->next && this_p->next->a_path[0])
 		path_recursion(info, this_p->next, start);
 	if (this_p->a_path[this_p->size + 1] != NULL)
-		path_recursion(info, this_p, start);
-	// path_recursion(info, this_p, start);
+		// path_recursion(info, this_p, start);
+	path_recursion(info, this_p, start);
 	this_p = info->first_path;
-	}
 	return (NULL);
-
 }
-
 int		find_path(t_info *info, t_room *start)
 {
 	int nb_links;
