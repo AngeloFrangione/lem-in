@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 02:45:29 by efouille         ###   ########.fr       */
+/*   Updated: 2018/10/19 02:58:46 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,23 @@ int find_path(t_info *info, t_room *sommet, t_stack **path)
 {
 	int		nb_links;
 	int		ret;
-
+	
 	ft_stackpush(path, sommet->name, ft_strlen(sommet->name) + 1);
+	mark(info, sommet);
 	if (sommet->end)
 		return (1);
 	nb_links = ft_count_links_2(sommet);
-	mark(info, sommet);
-	// ft_putstr(sommet->name);
 	ret = 0;
 	while (nb_links--)
 	{
 		if (!ismarked(info, sommet->links[nb_links]))
+		{
 			ret = find_path(info, sommet->links[nb_links], path);
+		}
+		else
+		{
+			ft_stackpush(path, sommet->name, ft_strlen(sommet->name) + 1);
+		}
 		if (ret)
 			return (1);
 		else
