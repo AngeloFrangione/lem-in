@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 02:26:42 by angelo           ###   ########.fr       */
+/*   Updated: 2018/10/19 02:37:09 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,20 @@ void	print_rooms(t_room *begin_node)
 int		main(void)
 {
 	t_info *info;
+	t_stack	*path;
 
 	info = ft_memalloc(sizeof(t_info));
 	ft_search_ants(info);
 	ft_search_rooms(info);
 	ft_search_links(info);
 	ft_putendl(info->file);
-	find_path(info, get_starting_room(info));
+	path = NULL;
+	find_path(info, get_starting_room(info), &path);
 	//ft_putendl(info->mark);
 /**/
 	t_stack	*k;
 
-	k = info->mark;
+	k = path;
 	while (k)
 	{
 		ft_putstr(k->content);

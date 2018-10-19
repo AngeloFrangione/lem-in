@@ -6,7 +6,7 @@
 /*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 02:04:42 by efouille         ###   ########.fr       */
+/*   Updated: 2018/10/19 02:36:26 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				clean(t_info *info);
 /*
 ** algo.c
 */
-int 				find_path(t_info *info, t_room *start);
+int 				find_path(t_info *info, t_room *start, t_stack**path);
 /*
 ** tools_algo.c
 */

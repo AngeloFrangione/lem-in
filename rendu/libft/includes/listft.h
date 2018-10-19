@@ -6,7 +6,7 @@
 /*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:52:52 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 02:21:22 by efouille         ###   ########.fr       */
+/*   Updated: 2018/10/19 02:44:59 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list			*ft_lstnew(void const *content, size_t len);
 t_stack			*ft_stacknew(void const *content, size_t len);
 void			ft_stackpush(t_stack **stack, void *content, size_t len);
-t_stack			*ft_stackpop(t_stack **stack);
+t_stack			*ft_stackpop(t_stack *stack);
 
 #endif
