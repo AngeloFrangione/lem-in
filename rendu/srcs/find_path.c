@@ -23,7 +23,6 @@ void		transform(t_info *info, int size)
 		if (tmp->start)
 		{
 			ft_set_path(info, &tmp, &end);
-			ft_putendl("");
 			ft_putendl(info->file);
 			ft_print_lems(info, end, tmp);
 		}
