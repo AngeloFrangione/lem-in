@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/17 19:44:46 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 14:39:25 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,16 @@ typedef struct		s_room
 	struct s_room	**links;
 	struct s_room	*next;
 	struct s_tube	*tubes;
+	struct s_room	*from_room;
 	char			*name;
 	int				start;
 	int				end;
+	int				visited;
 }					t_room;
-
-typedef struct		s_paths
-{
-	struct s_paths	*next;
-	struct s_room	**a_path;
-	int				size;
-	int				id;
-}					t_paths;
 
 typedef struct		s_info
 {
-	t_paths			*first_path;
+	t_room			**path;
 	t_room			*room;
 	char			*file;
 	char			*buff;
@@ -78,12 +72,7 @@ int 				find_path(t_info *info, t_room *start);
 t_room				*get_room(t_info *info, char *s);
 t_room				*get_starting_room(t_info *info);
 int					ft_count_links(t_room *room);
-/*
-** node_path.c
-*/
-void				print_paths(t_paths *begin_node);
-void				add_path(t_paths **begin_node, int id);
-t_paths				*create_path(int id);
+int					ft_size_path(t_info *info);
 /*
 ** parsing.c
 */
