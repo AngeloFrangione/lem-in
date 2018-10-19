@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:46:38 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 17:08:33 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ typedef struct		s_room
 	struct s_room	**links;
 	struct s_room	*next;
 	struct s_room	*next_room;
+	struct s_room	*previous_room;
 	char			*name;
+	int				ant;
 	int				start;
 	int				end;
 	int				visited;
