@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 14:39:25 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 15:09:03 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_room
 	struct s_room	**links;
 	struct s_room	*next;
 	struct s_tube	*tubes;
-	struct s_room	*from_room;
+	struct s_room	*next_room;
 	char			*name;
 	int				start;
 	int				end;
@@ -70,7 +70,7 @@ int 				find_path(t_info *info, t_room *start);
 ** tools_algo.c
 */
 t_room				*get_room(t_info *info, char *s);
-t_room				*get_starting_room(t_info *info);
+t_room				*get_ending_room(t_info *info);
 int					ft_count_links(t_room *room);
 int					ft_size_path(t_info *info);
 /*

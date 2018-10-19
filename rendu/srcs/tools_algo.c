@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:50:12 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 14:39:53 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 15:07:39 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ t_room	*get_room(t_info *info, char *s)
 	return (NULL);
 }
 
-t_room	*get_starting_room(t_info *info)
+t_room	*get_ending_room(t_info *info)
 {
 	t_room *tmp;
 
 	tmp = info->room;
 	while (tmp)
 	{
-		if (tmp->start)
+		if (tmp->end)
 			return (tmp);
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 14:49:54 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 15:26:59 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_count_links_2(t_room *room)
 	return (i);
 }
 
-int		find_path(t_info *info, t_room *start)
+int		find_path(t_info *info, t_room *end)
 {
 	int nb_links;
 	int i;
@@ -34,9 +34,9 @@ int		find_path(t_info *info, t_room *start)
 	info->path = ft_memalloc(sizeof(t_room*) * 50);
 
 	
-	info->path[0] = start;
-	start->visited = 1;
-	start->from_room = NULL;
+	info->path[0] = end;
+	end->visited = 1;
+	end->next_room = NULL;
 	i = 0;
 	while (info->path[i])
 	{
@@ -48,7 +48,7 @@ int		find_path(t_info *info, t_room *start)
 				size = ft_size_path(info);
 				info->path[size] = info->path[i]->links[nb_links];
 				info->path[size]->visited = 1;
-				info->path[size]->from_room = info->path[i];
+				info->path[size]->next_room = info->path[i];
 			}
 			if (info->path[size]->end)
 				break;
@@ -58,12 +58,13 @@ int		find_path(t_info *info, t_room *start)
 			break ;
 		i++;
 	}
-	while (info->path[size]->from_room)
+	while (info->path[size])
 	{
 		ft_putstr(info->path[size]->name);
-		info->path[size] = info->path[size]->from_room;
+		ft_putstr(" ==> ");
+		info->path[size] = info->path[size]->next_room;
 	}
-	//print_paths(info->first_path);
+		ft_putstr("Path found !!!!\n");
 	return (0);
 }
 
