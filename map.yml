@@ -12,7 +12,7 @@ printf-lem_in
 filler-lem_in
 lem_in-corewar
 corewar-test
-test
+# test
 # 13
 # ##start
 # printf 0 0

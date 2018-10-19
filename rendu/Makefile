@@ -6,16 +6,17 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/06 18:09:05 by afrangio          #+#    #+#              #
-#    Updated: 2018/10/14 12:54:36 by afrangio         ###   ########.fr        #
+#    Updated: 2018/10/20 00:48:37 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= lem-in
 CC				= clang
-CFLAGS			=	-Wall	\
+#CFLAGS			=	-Wall	\
 					-Wextra	\
 					-g
-#CFLAGS			=	-Wall	\
+
+CFLAGS			=	-Wall	\
 					-Wextra	\
 					-g -fsanitize=address	\
 					-fno-omit-frame-pointer		\

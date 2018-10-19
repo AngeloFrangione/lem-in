@@ -1,0 +1,9 @@
+[0;35mBegin of unvalid map[0m
+
+
+Leaks in ./unvalid_map/map_non_valid00
+==49970==    definitely lost: 240 bytes in 15 blocks
+
+Leaks in ./unvalid_map/map_non_valid01
+==49979==    definitely lost: 240 bytes in 15 blocks
+
