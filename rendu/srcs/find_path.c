@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 01:48:29 by angelo           ###   ########.fr       */
+/*   Updated: 2018/10/19 02:11:08 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,39 @@ int	ft_search_in_paths(t_info *info, t_room *room, t_room *start)
 
 int	ismarked(t_info *info, t_room *sommet)
 {
-	if (ft_strstr(info->mark, sommet->name))
-		return (1);
+/**/
+	t_stack	*k;
+
+	k = info->mark;
+	while (k)
+	{
+		if (ft_strstr(k->content, sommet->name))
+			return (1);
+		k = k->next;
+	}
+/**/
+	/*if (ft_strstr(info->mark, sommet->name))
+		return (1);*/
 	return (0);
 }
 
 void mark(t_info *info, t_room *sommet)
 {
-	if (!info->mark)
-	{
-		info->mark = ft_memalloc(sizeof(char) * ( 1 + ft_strlen(sommet->name)));
-		ft_strcat(info->mark, sommet->name);
-	}
+	//if (!info->mark)
+	//{
+		//info->mark = ft_memalloc(sizeof(char) * ( 1 + ft_strlen(sommet->name)));
+		//ft_strcat(info->mark, sommet->name);
+/**/
+		ft_stackpush(&(info->mark), sommet->name, ft_strlen(sommet->name) + 1);
+/**/
+	/*}
 	else
 	{
 		info->mark = ft_realloc(info->mark, sizeof(char) * (ft_strlen(info->mark) + ft_strlen(sommet->name) + 2));
 		ft_strcat(info->mark, "-");
 		ft_strcat(info->mark, sommet->name);
 
-	}
+	}*/
 }
 
 int find_path(t_info *info, t_room *sommet)

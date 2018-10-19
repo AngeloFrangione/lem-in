@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 01:47:35 by angelo           ###   ########.fr       */
+/*   Updated: 2018/10/19 02:10:20 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,19 @@ int		main(void)
 	ft_search_links(info);
 	ft_putendl(info->file);
 	find_path(info, get_starting_room(info));
-	ft_putendl(info->mark);
+	//ft_putendl(info->mark);
+/**/
+	t_stack	*k;
+
+	k = info->mark;
+	while (k)
+	{
+		ft_putstr(k->content);
+		ft_putstr(" - ");
+		k = k->next;
+	}
+	ft_putchar('\n');
+/**/
 	// print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
