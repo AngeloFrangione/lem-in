@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 19:01:58 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 19:21:25 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,69 +17,72 @@ void		transform(t_info *info, int size)
 	t_room *tmp;
 	t_room *end;
 
-	tmp = info->path[size];
-	if (tmp->start)
+	if (tmp && size > 0)
 	{
-		tmp->ant = info->ants;
-		while (!tmp->end)
+		tmp = info->path[size];
+		if (tmp->start)
 		{
-			ft_putstr(tmp->name);
-			ft_putstr(" ==> ");
-			tmp->next_room->previous_room = tmp;
-			tmp = tmp->next_room;
-		}
-		end = tmp;
-		tmp = tmp->previous_room;
-
-		ft_putendl("");
-		while (end->ant != info->ants)
-		{
-			tmp = end->previous_room;
-			while(tmp)
+			tmp->ant = info->ants;
+			while (!tmp->end)
 			{
-				if (tmp->ant)
-				{
-					if (tmp->start)
-					{
-						ft_putchar('L');
-						ft_putnbr(info->ants - tmp->ant + 1);
-						ft_putchar('-');
-						ft_putstr(tmp->next_room->name);
-						ft_putchar(' ');
-						tmp->next_room->ant = info->ants - tmp->ant + 1;
-						tmp->ant--;
-
-					}
-					else if (tmp->end)
-					{
-						ft_putchar('L');
-						ft_putnbr(tmp->ant);
-						ft_putchar('-');
-						ft_putstr(tmp->next_room->name);
-						ft_putchar(' ');
-						tmp->next_room->ant++;
-						tmp->ant = 0;
-					}
-					else
-					{
-						ft_putchar('L');
-						ft_putnbr(tmp->ant);
-						ft_putchar('-');
-						ft_putstr(tmp->next_room->name);
-						ft_putchar(' ');
-						tmp->next_room->ant = tmp->ant;
-						tmp->ant = 0;
-					}
-				}
-				tmp = tmp->previous_room;
+				ft_putstr(tmp->name);
+				ft_putstr(" ==> ");
+				tmp->next_room->previous_room = tmp;
+				tmp = tmp->next_room;
 			}
+			end = tmp;
+			tmp = tmp->previous_room;
+
 			ft_putendl("");
+			while (end->ant != info->ants)
+			{
+				tmp = end->previous_room;
+				while(tmp)
+				{
+					if (tmp->ant)
+					{
+						if (tmp->start)
+						{
+							ft_putchar('L');
+							ft_putnbr(info->ants - tmp->ant + 1);
+							ft_putchar('-');
+							ft_putstr(tmp->next_room->name);
+							ft_putchar(' ');
+							tmp->next_room->ant = info->ants - tmp->ant + 1;
+							tmp->ant--;
+
+						}
+						else if (tmp->end)
+						{
+							ft_putchar('L');
+							ft_putnbr(tmp->ant);
+							ft_putchar('-');
+							ft_putstr(tmp->next_room->name);
+							ft_putchar(' ');
+							tmp->next_room->ant++;
+							tmp->ant = 0;
+						}
+						else
+						{
+							ft_putchar('L');
+							ft_putnbr(tmp->ant);
+							ft_putchar('-');
+							ft_putstr(tmp->next_room->name);
+							ft_putchar(' ');
+							tmp->next_room->ant = tmp->ant;
+							tmp->ant = 0;
+						}
+					}
+					tmp = tmp->previous_room;
+				}
+				ft_putendl("");
+			}
 		}
+		else
+			ft_putstr("No path found !!!!\n");
 	}
 	else
 		ft_putstr("No path found !!!!\n");
-
-
 }
 
 void		find_path(t_info *info, t_room *end)
