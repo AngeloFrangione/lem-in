@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:49:36 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/17 13:47:28 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:13:20 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int			ft_isroom(t_info *info)
 		free_charofchar(info->split);
 		return (0);
 	}
-	if (!ft_isvalid_room_name(info->split[0]) || !ft_isnumber(info->split[1]) || \
+	if (!ft_isvalid_room_name(info->split[0]) || \
+		!ft_isnumber(info->split[1]) || \
 		!ft_isnumber(info->split[2]))
 		ft_throw_error_coc(E_WRONG_ROOM_NAME, info);
 	if (check_room_duplicates(info, info->split[0]))

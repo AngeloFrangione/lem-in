@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 15:09:03 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:27:25 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,10 @@
 # define E_WRONG_ROOM_NAME -5
 # define E_WRONG_LINE -6
 
-typedef struct		s_tube
-{
-	char			*connection;
-	struct s_tube	*next;
-}					t_tube;
-
 typedef struct		s_room
 {
 	struct s_room	**links;
 	struct s_room	*next;
-	struct s_tube	*tubes;
 	struct s_room	*next_room;
 	char			*name;
 	int				start;
@@ -73,6 +66,7 @@ t_room				*get_room(t_info *info, char *s);
 t_room				*get_ending_room(t_info *info);
 int					ft_count_links(t_room *room);
 int					ft_size_path(t_info *info);
+int					count_rooms(t_info *info);
 /*
 ** parsing.c
 */
@@ -115,8 +109,6 @@ void				ft_throw_error_coc(int error, t_info *info);
 */
 t_room				*create_room(char *name);
 void				add_room(t_room **begin_node, char *name);
-t_tube				*create_tube(char *connection);
-void				add_tube(t_tube **begin_node, char *connection);
 /*
 ** run_through.c
 */

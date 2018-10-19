@@ -3,37 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 15:26:59 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:37:13 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int		ft_count_links_2(t_room *room)
-{
-	int		i;
-
-	i = 0;
-	while (room->links[i] )
-		i++;
-	return (i);
-}
 
 int		find_path(t_info *info, t_room *end)
 {
 	int nb_links;
 	int i;
 	int size;
-   
-	//faire un malloc en fonction du nombre de room (compter au parsing !)
-	//info->path = (t_room *)ft_memalloc(sizeof(t_room*) * nb_rooms);
-	
-	info->path = ft_memalloc(sizeof(t_room*) * 50);
 
-	
+	size = -1;
+	info->path = ft_memalloc(sizeof(t_room*) * count_rooms(info));
 	info->path[0] = end;
 	end->visited = 1;
 	end->next_room = NULL;
@@ -41,7 +27,7 @@ int		find_path(t_info *info, t_room *end)
 	while (info->path[i])
 	{
 		nb_links = 0;
-		while (nb_links < ft_count_links_2(info->path[i]))
+		while (nb_links < ft_count_links(info->path[i]))
 		{
 			if (!(info->path[i]->links[nb_links]->visited))
 			{
@@ -50,11 +36,11 @@ int		find_path(t_info *info, t_room *end)
 				info->path[size]->visited = 1;
 				info->path[size]->next_room = info->path[i];
 			}
-			if (info->path[size]->end)
-				break;
+			if ((info->path[size])->end)
+				break ;
 			nb_links++;
 		}
-		if (info->path[size]->end)
+		if (size != -1 && (info->path[size])->end)
 			break ;
 		i++;
 	}
@@ -64,19 +50,7 @@ int		find_path(t_info *info, t_room *end)
 		ft_putstr(" ==> ");
 		info->path[size] = info->path[size]->next_room;
 	}
-		ft_putstr("Path found !!!!\n");
+	ft_putstr("Path found !!!!\n");
+	free(info->path);
 	return (0);
 }
-
-
-/* Nouvel Algo :
- *
- * utiliser une chaine de room dans laquelle on liste toutes les rooms non visitées à la suite.
- *
- * - utilisation d'un booleen dans les rooms une fois visitées.
- * - stockage de la room dont on vient dans la room visitée.
- *
- * On parcourt toute la chaine de rooms en la remplissant au fur à mesure.
- *
- * On arrete de la parcourir dès qu'on a trouvé la end, ou quand on arrive au null (pas de sortie).
- */

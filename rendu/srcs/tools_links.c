@@ -6,27 +6,13 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:50:04 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/16 16:08:52 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:15:01 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 int		ft_check_link_exists(t_room *room, char *connection)
-{
-	t_tube *tmp;
-
-	tmp = room->tubes;
-	while (tmp)
-	{
-		if (ft_strequ(tmp->connection, connection))
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
-int		ft_check_link_exists_2(t_room *room, char *connection)
 {
 	int i;
 
@@ -63,16 +49,6 @@ void	ft_addlink(t_info *info, char *room, char *link)
 		if (ft_strequ(tmp->name, room))
 		{
 			if (!ft_check_link_exists(tmp, link))
-				add_tube(&tmp->tubes, ft_strdup(link));
-		}
-		tmp = tmp->next;
-	}
-	tmp = info->room;
-	while (tmp)
-	{
-		if (ft_strequ(tmp->name, room))
-		{
-			if (!ft_check_link_exists_2(tmp, link))
 				ft_assignlink(tmp, get_room(info, link));
 		}
 		tmp = tmp->next;

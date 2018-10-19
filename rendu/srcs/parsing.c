@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 14:59:13 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:02:51 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:10:17 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,7 @@ void	ft_search_links(t_info *info)
 	{
 		if (!info->buff)
 			break ;
-		if (ft_iscomment(info) > 0)
-		{
-			ft_saveline(info);
-			ft_strdel(&info->buff);
-			continue ;
-		}
-		else if (ft_islink(info) > 0)
+		if (ft_iscomment(info) > 0 || ft_islink(info) > 0)
 		{
 			ft_saveline(info);
 			ft_strdel(&info->buff);
@@ -74,6 +68,5 @@ void	ft_search_links(t_info *info)
 		else
 			break ;
 	}
-	ft_strdel(&info->buff);
 	ft_strdel(&info->buff);
 }

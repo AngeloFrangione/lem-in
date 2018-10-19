@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 19:07:32 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/17 16:29:56 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/19 16:15:35 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,5 @@ void		add_room(t_room **begin_node, char *name)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = create_room(name);
-	}
-}
-
-t_tube		*create_tube(char *connection)
-{
-	t_tube *node;
-
-	if (!(node = ft_memalloc(sizeof(t_tube))))
-		return (NULL);
-	else
-	{
-		node->connection = connection;
-		node->next = NULL;
-	}
-	return (node);
-}
-
-void		add_tube(t_tube **begin_node, char *connection)
-{
-	t_tube	*tmp;
-
-	tmp = *begin_node;
-	if (!*begin_node)
-		*begin_node = create_tube(connection);
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = create_tube(connection);
 	}
 }
