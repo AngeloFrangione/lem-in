@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 02:37:09 by efouille         ###   ########.fr       */
+/*   Updated: 2018/10/19 03:02:33 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int		main(void)
 {
 	t_info *info;
 	t_stack	*path;
+	t_stack	*k;
+	k = path;
 
 	info = ft_memalloc(sizeof(t_info));
 	ft_search_ants(info);
@@ -77,11 +79,6 @@ int		main(void)
 	ft_putendl(info->file);
 	path = NULL;
 	find_path(info, get_starting_room(info), &path);
-	//ft_putendl(info->mark);
-/**/
-	t_stack	*k;
-
-	k = path;
 	while (k)
 	{
 		ft_putstr(k->content);
@@ -89,8 +86,6 @@ int		main(void)
 		k = k->next;
 	}
 	ft_putchar('\n');
-/**/
-	// print_rooms(info->room);
 	clean(info);
 	ft_strdel(&info->file);
 	free(info);

@@ -6,7 +6,7 @@
 /*   By: angelo <angelo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 02:58:46 by angelo           ###   ########.fr       */
+/*   Updated: 2018/10/19 03:02:12 by angelo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		ft_count_links_2(t_room *room)
 	return (i);
 }
 
-int	ft_search_in_paths(t_info *info, t_room *room, t_room *start)
+int		ft_search_in_paths(t_info *info, t_room *room, t_room *start)
 {
 	t_paths	*path;
 	int		i;
@@ -44,9 +44,8 @@ int	ft_search_in_paths(t_info *info, t_room *room, t_room *start)
 	return (0);
 }
 
-int	ismarked(t_info *info, t_room *sommet)
+int		ismarked(t_info *info, t_room *sommet)
 {
-/**/
 	t_stack	*k;
 
 	k = info->mark;
@@ -56,29 +55,7 @@ int	ismarked(t_info *info, t_room *sommet)
 			return (1);
 		k = k->next;
 	}
-/**/
-	/*if (ft_strstr(info->mark, sommet->name))
-		return (1);*/
 	return (0);
-}
-
-void mark(t_info *info, t_room *sommet)
-{
-	//if (!info->mark)
-	//{
-		//info->mark = ft_memalloc(sizeof(char) * ( 1 + ft_strlen(sommet->name)));
-		//ft_strcat(info->mark, sommet->name);
-/**/
-		ft_stackpush(&(info->mark), sommet->name, ft_strlen(sommet->name) + 1);
-/**/
-	/*}
-	else
-	{
-		info->mark = ft_realloc(info->mark, sizeof(char) * (ft_strlen(info->mark) + ft_strlen(sommet->name) + 2));
-		ft_strcat(info->mark, "-");
-		ft_strcat(info->mark, sommet->name);
-
-	}*/
 }
 
 int find_path(t_info *info, t_room *sommet, t_stack **path)
@@ -87,7 +64,7 @@ int find_path(t_info *info, t_room *sommet, t_stack **path)
 	int		ret;
 	
 	ft_stackpush(path, sommet->name, ft_strlen(sommet->name) + 1);
-	mark(info, sommet);
+	ft_stackpush(&(info->mark), sommet->name, ft_strlen(sommet->name) + 1);
 	if (sommet->end)
 		return (1);
 	nb_links = ft_count_links_2(sommet);
@@ -95,13 +72,9 @@ int find_path(t_info *info, t_room *sommet, t_stack **path)
 	while (nb_links--)
 	{
 		if (!ismarked(info, sommet->links[nb_links]))
-		{
 			ret = find_path(info, sommet->links[nb_links], path);
-		}
 		else
-		{
 			ft_stackpush(path, sommet->name, ft_strlen(sommet->name) + 1);
-		}
 		if (ret)
 			return (1);
 		else
