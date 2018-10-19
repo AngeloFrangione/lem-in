@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:50:04 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:15:01 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 16:43:14 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ int		ft_check_link_exists(t_room *room, char *connection)
 	return (0);
 }
 
-
 void	ft_assignlink(t_room *room, t_room *link)
 {
 	int i;
+	int	previous;
+	int	next;
 
 	i = 0;
 	while (room->links[i])
 		i++;
-	room->links = ft_memrealloc(room->links, sizeof(t_room) * (i),sizeof(t_room) * (i + 1));
+	previous = sizeof(t_room) * (i);
+	next = sizeof(t_room) * (i + 1);
+	room->links = ft_memrealloc(room->links, previous, next);
 	room->links[i] = link;
 }
 
@@ -53,7 +56,6 @@ void	ft_addlink(t_info *info, char *room, char *link)
 		}
 		tmp = tmp->next;
 	}
-
 }
 
 int		ft_check_room_exists(t_info *info, char *name)

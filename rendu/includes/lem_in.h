@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:27:25 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 16:46:38 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				clean(t_info *info);
 /*
 ** algo.c
 */
-int 				find_path(t_info *info, t_room *start);
+void 				find_path(t_info *info, t_room *start);
 /*
 ** tools_algo.c
 */

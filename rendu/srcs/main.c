@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:17:08 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 16:48:30 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	clean(t_info *info)
 
 int		main(void)
 {
-	t_info *info;
+	t_info	*info;
+	char	*path;
 
 	info = ft_memalloc(sizeof(t_info));
 	ft_search_ants(info);

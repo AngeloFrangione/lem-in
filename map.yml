@@ -1,0 +1,23 @@
+#test
+13
+##start
+printf 0 0
+filler 0 0
+lem_in 0 0
+##end
+test 0 0
+corewar 0 0
+printf-filler
+printf-lem_in
+filler-lem_in
+lem_in-corewar
+corewar-test
+test
+# 13
+# ##start
+# printf 0 0
+# lem_in 0 0
+# ##end
+# corewar 0 0
+# printf-lem_in
+# lem_in-corewar

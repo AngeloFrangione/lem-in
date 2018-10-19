@@ -6,20 +6,31 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 16:37:13 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 16:51:57 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		find_path(t_info *info, t_room *end)
+char 		**transform(t_info *info, int size)
+{
+	while (info->path[size])
+	{
+		ft_putstr(info->path[size]->name);
+		ft_putstr(" ==> ");
+		info->path[size] = info->path[size]->next_room;
+	}
+	ft_putstr("Path found !!!!\n");
+}
+
+void		find_path(t_info *info, t_room *end)
 {
 	int nb_links;
 	int i;
 	int size;
 
 	size = -1;
-	info->path = ft_memalloc(sizeof(t_room*) * count_rooms(info));
+	info->path = ft_memalloc(sizeof(t_room*) * count_rooms(info) + 10);
 	info->path[0] = end;
 	end->visited = 1;
 	end->next_room = NULL;
@@ -44,13 +55,6 @@ int		find_path(t_info *info, t_room *end)
 			break ;
 		i++;
 	}
-	while (info->path[size])
-	{
-		ft_putstr(info->path[size]->name);
-		ft_putstr(" ==> ");
-		info->path[size] = info->path[size]->next_room;
-	}
-	ft_putstr("Path found !!!!\n");
+	transform(info, size);
 	free(info->path);
-	return (0);
 }

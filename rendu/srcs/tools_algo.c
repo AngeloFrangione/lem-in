@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:50:12 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:27:02 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 16:40:30 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		count_rooms(t_info *info)
 {
-	t_room *tmp;
-	int i;
+	t_room	*tmp;
+	int		i;
 
 	tmp = info->room;
 	i = 0;
