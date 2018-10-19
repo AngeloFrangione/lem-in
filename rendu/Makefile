@@ -10,24 +10,40 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= lem-in
-CC				= clang
-#CFLAGS			=	-Wall	\
-					-Wextra	\
-					-g
-
+NAME			=	lem-in
+CC				=	clang
 CFLAGS			=	-Wall	\
+					-Wextra	\
+					-Werror
+#CFLAGS			=	-Wall	\
 					-Wextra	\
 					-g -fsanitize=address	\
 					-fno-omit-frame-pointer		\
 					-fsanitize-address-use-after-scope
-SOURCES			= srcs/*.c
-INCLUDES		= includes/*.h
+
+SOURCES			=	errors.c \
+					find_path.c \
+					main.c \
+					node.c \
+					parsing.c \
+					run_through.c \
+					tools_algo.c \
+					tools_ants.c \
+					tools_comments.c \
+					tools_common.c \
+					tools_links.c \
+					tools_printants.c \
+					tools_rooms.c \
+
+INCLUDES		=	includes/lem_in.h
+
+SRCS = $(addprefix srcs/, $(SOURCES))
+
 all: $(NAME)
 
-$(NAME): $(SOURCES) $(INCLUDES)
+$(NAME): $(SRCS) $(INCLUDES)
 	make -C libft/
-	$(CC) $(CFLAGS) $(SOURCES) -Iincludes -Ilibft/includes libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -Iincludes -Ilibft/includes libft/libft.a -o $(NAME)
 
 clean:
 	make -C libft/ clean

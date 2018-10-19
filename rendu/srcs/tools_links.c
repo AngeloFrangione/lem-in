@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-int		ft_check_link_exists(t_room *room, char *connection)
+int			ft_check_link_exists(t_room *room, char *connection)
 {
 	int i;
 
@@ -27,7 +27,7 @@ int		ft_check_link_exists(t_room *room, char *connection)
 	return (0);
 }
 
-void	ft_assignlink(t_room *room, t_room *link)
+void		ft_assignlink(t_room *room, t_room *link)
 {
 	int i;
 	int	previous;
@@ -42,7 +42,7 @@ void	ft_assignlink(t_room *room, t_room *link)
 	room->links[i] = link;
 }
 
-void	ft_addlink(t_info *info, char *room, char *link)
+void		ft_addlink(t_info *info, char *room, char *link)
 {
 	t_room *tmp;
 
@@ -58,11 +58,11 @@ void	ft_addlink(t_info *info, char *room, char *link)
 	}
 }
 
-static int		ft_check_room_exists(t_info *info, char *name, int flag)
+static int	ft_check_room_exists(t_info *info, char *name, int flag)
 {
 	t_room *tmp;
 
-	if(flag == 1)
+	if (flag == 1)
 	{
 		tmp = info->room;
 		while (tmp)
@@ -83,7 +83,7 @@ static int		ft_check_room_exists(t_info *info, char *name, int flag)
 	return (0);
 }
 
-int		ft_islink(t_info *info)
+int			ft_islink(t_info *info)
 {
 	int		i;
 
