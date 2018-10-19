@@ -2,7 +2,34 @@
 ##start
 libft 0 0
 fillit 0 0
-##end
 gnl 0 0
+printf 0 0
+push_swap 0 0
+filler 0 0
+lem_in 0 0
+##end
+corewar 0 0
+fdf 0 0
+fractol 0 0
+rtv1 0 0
+rt 0 0
+ls 0 0
+minishell 0 0
+21sh 0 0
+42sh 0 0
 libft-fillit
 fillit-gnl
+gnl-fdf
+fdf-fractol
+fractol-rtv1
+rtv1-rt
+gnl-printf
+printf-filler
+printf-push_swap
+filler-lem_in
+lem_in-push_swap
+lem_in-corewar
+gnl-ls
+ls-minishell
+minishell-21sh
+21sh-42sh
