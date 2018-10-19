@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   listft.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:52:52 by afrangio          #+#    #+#             */
-/*   Updated: 2018/04/20 17:27:47 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 02:21:22 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_list
 typedef t_list	t_stack;
 
 void			ft_lstadd(t_list **alst, t_list *new);
+void			ft_lstappend(t_list **alst, t_list *new);
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));

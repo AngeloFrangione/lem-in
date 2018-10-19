@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: angelo <angelo@student.42.fr>              +#+  +:+       +#+         #
+#    By: efouille <efouille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 02:00:39 by afrangio          #+#    #+#              #
-#    Updated: 2018/09/24 18:35:48 by angelo           ###   ########.fr        #
+#    Updated: 2018/10/19 02:22:30 by efouille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ CFILES		= 	srcs/io/ft_putchar.c\
 				srcs/io/ft_putwchar_fd.c\
 				srcs/io/get_next_line.c\
 				srcs/list/ft_lstadd.c\
+				srcs/list/ft_lstappend.c\
 				srcs/list/ft_lstdel.c\
 				srcs/list/ft_lstdelone.c\
 				srcs/list/ft_lstiter.c\
@@ -101,6 +102,7 @@ OFILES		=	ft_atoi.o\
 				ft_itoa_base.o\
 				ft_log.o\
 				ft_lstadd.o\
+				ft_lstappend.o\
 				ft_lstdel.o\
 				ft_lstdelone.o\
 				ft_lstiter.o\

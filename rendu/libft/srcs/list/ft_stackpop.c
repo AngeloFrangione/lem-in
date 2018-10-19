@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stackpop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 23:41:45 by afrangio          #+#    #+#             */
-/*   Updated: 2017/11/23 01:32:16 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 02:20:59 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack	*ft_stackpop(t_stack **stack)
+t_stack	*ft_stkpop(t_stack *stk)
 {
-	t_stack *ret;
+	t_stack	*prev;
 
-	if (!stack || !*stack)
+	if (!stk)
 		return (NULL);
-	ret = *stack;
-	*stack = (*stack)->next;
-	ret->next = NULL;
-	return (ret);
+	while (stk->next)
+	{
+		prev = stk;
+		stk = stk->next;
+	}
+	prev->next = NULL;
+	return (stk);
 }

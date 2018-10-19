@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stackpush.c                                     :+:      :+:    :+:   */
+/*   ft_lstappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: efouille <efouille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 23:41:45 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 02:21:43 by efouille         ###   ########.fr       */
+/*   Created: 2018/04/17 13:38:21 by efouille          #+#    #+#             */
+/*   Updated: 2018/10/19 02:20:16 by efouille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_stackpush(t_stack **stack, void *content, size_t len)
+void	ft_lstappend(t_list **alst, t_list *new)
 {
-	t_stack *new;
+	t_list	*t;
 
-	new = ft_stacknew(content, len);
-	ft_lstappend((t_list**)stack, (t_list*)new);
+	if (alst)
+	{
+		if (*alst)
+		{
+			t = *alst;
+			while (t->next)
+				t = t->next;
+			t->next = new;
+		}
+		else
+		{
+			*alst = new;
+		}
+	}
 }
