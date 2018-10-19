@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 17:08:33 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 20:37:19 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define E_DUPLICATE_ROOM -4
 # define E_WRONG_ROOM_NAME -5
 # define E_WRONG_LINE -6
+# define E_NO_PATH -7
 
 typedef struct		s_room
 {
@@ -54,13 +55,11 @@ typedef struct		s_info
 
 }					t_info;
 
-//TEMPORY MAIN//
 void				clean(t_info *info);
-
 /*
 ** algo.c
 */
-void 				find_path(t_info *info, t_room *start);
+void				find_path(t_info *info, t_room *start);
 /*
 ** tools_algo.c
 */
@@ -75,6 +74,14 @@ int					count_rooms(t_info *info);
 void				ft_search_ants(t_info *info);
 void				ft_search_links(t_info *info);
 void				ft_search_rooms(t_info *info);
+/*
+** tools_printants.c
+*/
+void				ft_print_start(t_info *info, t_room *tmp);
+void				ft_print_end(t_room *tmp);
+void				ft_print_else(t_room *tmp);
+void				ft_print_lems(t_info *info, t_room *end, t_room *tmp);
+void				ft_set_path(t_info *info, t_room **tmp, t_room **end);
 /*
 ** tools_comments.c
 */

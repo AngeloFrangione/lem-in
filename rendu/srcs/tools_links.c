@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:50:04 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:43:14 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 20:05:42 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,44 +58,56 @@ void	ft_addlink(t_info *info, char *room, char *link)
 	}
 }
 
-int		ft_check_room_exists(t_info *info, char *name)
+static int		ft_check_room_exists(t_info *info, char *name, int flag)
 {
 	t_room *tmp;
 
-	tmp = info->room;
-	while (tmp)
+	if(flag == 1)
 	{
-		if (ft_strequ(tmp->name, name))
-			return (1);
-		tmp = tmp->next;
+		tmp = info->room;
+		while (tmp)
+		{
+			if (ft_strequ(tmp->name, name))
+				return (1);
+			tmp = tmp->next;
+		}
+		return (0);
+	}
+	else
+	{
+		ft_addlink(info, info->split[0], info->split[1]);
+		ft_addlink(info, info->split[1], info->split[0]);
+		free_charofchar(info->split);
+		return (1);
 	}
 	return (0);
 }
 
 int		ft_islink(t_info *info)
 {
-	char	**split;
 	int		i;
 
 	if (ft_strchr(info->buff, ' '))
 		return (0);
-	split = ft_strsplit(info->buff, '-');
+	info->split = ft_strsplit(info->buff, '-');
 	i = 0;
-	while (split[i])
+	while (info->split[i])
 		i++;
 	if (i != 2)
 	{
-		info->error_no_exit = -7;
-		free_charofchar(split);
+		free_charofchar(info->split);
 		return (0);
 	}
-	if (ft_strequ(split[0], split[1]))
+	if (ft_strequ(info->split[0], info->split[1]))
+	{
+		free_charofchar(info->split);
 		return (-1);
-	if (!ft_check_room_exists(info, split[0]) ||
-		!ft_check_room_exists(info, split[1]))
+	}
+	if (!ft_check_room_exists(info, info->split[0], 1) || \
+		!ft_check_room_exists(info, info->split[1], 1))
+	{
+		free_charofchar(info->split);
 		return (-1);
-	ft_addlink(info, split[0], split[1]);
-	ft_addlink(info, split[1], split[0]);
-	free_charofchar(split);
-	return (1);
+	}
+	return (ft_check_room_exists(info, NULL, 2));
 }

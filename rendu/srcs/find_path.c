@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/19 19:21:25 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 20:36:55 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,72 +17,42 @@ void		transform(t_info *info, int size)
 	t_room *tmp;
 	t_room *end;
 
-	if (tmp && size > 0)
+	if (info->path && size > 0)
 	{
 		tmp = info->path[size];
 		if (tmp->start)
 		{
-			tmp->ant = info->ants;
-			while (!tmp->end)
-			{
-				ft_putstr(tmp->name);
-				ft_putstr(" ==> ");
-				tmp->next_room->previous_room = tmp;
-				tmp = tmp->next_room;
-			}
-			end = tmp;
-			tmp = tmp->previous_room;
-
+			ft_set_path(info, &tmp, &end);
 			ft_putendl("");
-			while (end->ant != info->ants)
-			{
-				tmp = end->previous_room;
-				while(tmp)
-				{
-					if (tmp->ant)
-					{
-						if (tmp->start)
-						{
-							ft_putchar('L');
-							ft_putnbr(info->ants - tmp->ant + 1);
-							ft_putchar('-');
-							ft_putstr(tmp->next_room->name);
-							ft_putchar(' ');
-							tmp->next_room->ant = info->ants - tmp->ant + 1;
-							tmp->ant--;
-
-						}
-						else if (tmp->end)
-						{
-							ft_putchar('L');
-							ft_putnbr(tmp->ant);
-							ft_putchar('-');
-							ft_putstr(tmp->next_room->name);
-							ft_putchar(' ');
-							tmp->next_room->ant++;
-							tmp->ant = 0;
-						}
-						else
-						{
-							ft_putchar('L');
-							ft_putnbr(tmp->ant);
-							ft_putchar('-');
-							ft_putstr(tmp->next_room->name);
-							ft_putchar(' ');
-							tmp->next_room->ant = tmp->ant;
-							tmp->ant = 0;
-						}
-					}
-					tmp = tmp->previous_room;
-				}
-				ft_putendl("");
-			}
+			ft_putendl(info->file);
+			ft_print_lems(info, end, tmp);
 		}
 		else
-			ft_putstr("No path found !!!!\n");
+		{
+			free(info->path);
+			ft_throw_error(E_NO_PATH, info);
+		}
 	}
 	else
-		ft_putstr("No path found !!!!\n");
+	{
+		free(info->path);
+		ft_throw_error(E_NO_PATH, info);
+	}
+}
+
+static int	find_path_bis(t_info *info, int *size, int i, int *nb_links)
+{
+	if (!(info->path[i]->links[*nb_links]->visited))
+	{
+		*size = ft_size_path(info);
+		info->path[*size] = (info->path[i])->links[*nb_links];
+		(info->path[*size])->visited = 1;
+		info->path[*size]->next_room = info->path[i];
+	}
+	if ((info->path[*size])->start)
+		return (0);
+	(*nb_links)++;
+	return (1);
 }
 
 void		find_path(t_info *info, t_room *end)
@@ -101,18 +71,8 @@ void		find_path(t_info *info, t_room *end)
 	{
 		nb_links = 0;
 		while (nb_links < ft_count_links(info->path[i]))
-		{
-			if (!(info->path[i]->links[nb_links]->visited))
-			{
-				size = ft_size_path(info);
-				info->path[size] = info->path[i]->links[nb_links];
-				info->path[size]->visited = 1;
-				info->path[size]->next_room = info->path[i];
-			}
-			if ((info->path[size])->start)
+			if (!(find_path_bis(info, &size, i, &nb_links)))
 				break ;
-			nb_links++;
-		}
 		if (size != -1 && (info->path[size])->start)
 			break ;
 		i++;

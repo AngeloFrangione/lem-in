@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 19:13:35 by afrangio         ###   ########.fr       */
+/*   Updated: 2018/10/19 20:09:00 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		main(void)
 	ft_search_ants(info);
 	ft_search_rooms(info);
 	ft_search_links(info);
-	ft_putendl(info->file);
 	find_path(info, get_ending_room(info));
 	clean(info);
 	ft_strdel(&info->file);
