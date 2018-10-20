@@ -6,7 +6,7 @@
 #    By: angelo <angelo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/21 02:00:39 by afrangio          #+#    #+#              #
-#    Updated: 2018/09/24 18:35:48 by angelo           ###   ########.fr        #
+#    Updated: 2018/10/20 17:20:13 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,6 +163,7 @@ OFILES		=	ft_atoi.o\
 				ft_putchar.o\
 				ft_putstrlen.o\
 				ft_putstrlen_fd.o\
+				ft_lstappend.o\
 				get_next_line.o\
 
 all: $(NAME)

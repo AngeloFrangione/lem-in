@@ -17,11 +17,17 @@ void	ft_saveline(t_info *info)
 	int newsize;
 
 	if (!info->file)
+	{
 		info->file = ft_memalloc(sizeof(char) * (ft_strlen(info->buff) + 2));
+		if (!info->file)
+			ft_throw_error(0, info);
+	}
 	else
 	{
 		newsize = sizeof(char) * ft_strlen(info->file) + ft_strlen(info->buff);
 		info->file = ft_realloc(info->file, newsize + sizeof(char) * 2);
+		if (!info->file)
+			ft_throw_error(0, info);
 	}
 	ft_strcat(info->file, info->buff);
 	ft_strcat(info->file, "\n");

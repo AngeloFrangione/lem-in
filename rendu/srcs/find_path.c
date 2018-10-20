@@ -62,6 +62,8 @@ void		find_path(t_info *info, t_room *end)
 
 	size = -1;
 	info->path = ft_memalloc(sizeof(t_room*) * count_rooms(info) + 10);
+	if (!info->path)
+		ft_throw_error(0, info);
 	info->path[0] = end;
 	end->visited = 1;
 	end->next_room = NULL;

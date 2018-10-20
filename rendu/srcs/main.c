@@ -31,6 +31,8 @@ int		main(void)
 	t_info	*info;
 
 	info = ft_memalloc(sizeof(t_info));
+	if (!info)
+		return (0);
 	ft_search_ants(info);
 	ft_search_rooms(info);
 	ft_search_links(info);
