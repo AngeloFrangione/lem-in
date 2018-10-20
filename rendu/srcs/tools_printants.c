@@ -18,7 +18,6 @@ void	ft_print_start(t_info *info, t_room *tmp)
 	ft_putnbr(info->ants - tmp->ant + 1);
 	ft_putchar('-');
 	ft_putstr(tmp->next_room->name);
-	ft_putchar(' ');
 	tmp->next_room->ant = info->ants - tmp->ant + 1;
 	tmp->ant--;
 }
@@ -29,7 +28,6 @@ void	ft_print_end(t_room *tmp)
 	ft_putnbr(tmp->ant);
 	ft_putchar('-');
 	ft_putstr(tmp->next_room->name);
-	ft_putchar(' ');
 	tmp->next_room->ant++;
 	tmp->ant = 0;
 }
@@ -40,7 +38,6 @@ void	ft_print_else(t_room *tmp)
 	ft_putnbr(tmp->ant);
 	ft_putchar('-');
 	ft_putstr(tmp->next_room->name);
-	ft_putchar(' ');
 	tmp->next_room->ant = tmp->ant;
 	tmp->ant = 0;
 }
@@ -60,10 +57,12 @@ void	ft_print_lems(t_info *info, t_room *end, t_room *tmp)
 					ft_print_end(tmp);
 				else
 					ft_print_else(tmp);
+				if (tmp->previous_room && tmp->previous_room->ant)
+					ft_putchar(' ');
 			}
 			tmp = tmp->previous_room;
 		}
-		ft_putendl("");
+		ft_putchar('\n');
 	}
 }
 
