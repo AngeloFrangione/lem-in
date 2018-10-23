@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/19 16:13:22 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/23 16:59:21 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef struct		s_info
 	int				end;
 	int				error_no_exit;
 	int				nb_paths;
+	int				xmin;
+	int				xmax;
+	int				ymin;
+	int				ymax;
 
 }					t_info;
 

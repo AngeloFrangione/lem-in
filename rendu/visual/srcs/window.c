@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 17:14:43 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/23 16:31:49 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/23 17:59:51 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,8 @@ int			deal_key(int key, t_mlx *mlx)
 
 void		*window(t_info *info)
 {
-	if (info)
-		;
 	t_mlx	*mlx;
-//
+
 	if (!(mlx = ft_memalloc(sizeof(t_mlx))))
 		return (NULL);
 //	mlx->speed = 500000;

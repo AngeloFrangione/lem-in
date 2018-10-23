@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 04:25:21 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/23 16:31:51 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/23 17:59:52 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ static void     fill_pixel(unsigned int *img, int x, int y)
 	while (big < 8)
 	{
 		if (x < WIN_W && y + big < WIN_H && x >= 30 && y + big >= 30)
-			//img[(y + big) * WIN_W + x]= 0x442525;
 			img[y * WIN_W + (x + big)]= 0x442525;
 		big++;
 	}
@@ -111,7 +110,6 @@ static void     fill_pixel(unsigned int *img, int x, int y)
 			img[(y + big) * WIN_W + x]= 0x442525;
 		big++;
 	}
-
 }
 
 static void     draw_line(unsigned int *img, t_room a, t_room b)
@@ -151,6 +149,8 @@ void	draw_room(unsigned int *img, int rx, int ry, int color)
 		{
 			if (s_x < 70 && s_y < 70)
 				img[y * WIN_W + x]= color; 
+			if (s_x < 70 && s_y < 70 && rand() % 42 == 0)
+				img[y * WIN_W + x] = 0x442525;
 			s_y++;
 		}
 		s_y = 0;
@@ -158,44 +158,47 @@ void	draw_room(unsigned int *img, int rx, int ry, int color)
 	}
 }
 
-void	calc_coord(t_info *info)
+static void	scale(t_info *info)
 {
 	t_room *tmp;
 
 	tmp = info->room;
-	int i = 0;
-	int xmin = 5000;
-	int xmax = 0;
-	int ymin = 5000;
-	int ymax = 0;
+	info->xmin = 5000;
+	info->ymin = 5000;
+	info->xmax = 0;
+	info->ymax = 0;
 	while (tmp)
 	{
-		i++;
-		if (tmp->x < xmin)
-			xmin = tmp->x;
-		else if (tmp->x > xmax)
-			xmax = tmp->x;
-		if (tmp->y < ymin)
-			ymin = tmp->y;
-		else if (tmp->y > ymax)
-			ymax = tmp->y;
+		if (tmp->x < info->xmin)
+			info->xmin = tmp->x;
+		else if (tmp->x > info->xmax)
+			info->xmax = tmp->x;
+		if (tmp->y < info->ymin)
+			info->ymin = tmp->y;
+		else if (tmp->y > info->ymax)
+			info->ymax = tmp->y;
 		tmp = tmp->next;
 	}
-	printf("Nb room : %d\nXmin : %d\n Xmax : %d\n Ymin : %d\n Ymax : %d\n", i, xmin, xmax, ymin, ymax);
-	int x_size = (WIN_W - WIN_W /10) / (xmax - xmin);
-	printf("x_size = %d\nWIN_W = %d\n", x_size, WIN_W);
-	int y_size = (WIN_H - WIN_H /4) / (ymax - ymin);
-	printf("y_size = %d\nWIN_H = %d\n", y_size, WIN_H);
-	tmp = info->room;
-	if (x_size == 0)
+	if (info->xmax > 500 || info->ymax > 30)
 	{
 		printf("Error, map is too big\nWrong format for coordinates\n");
 		exit(0);
 	}
+	info->xmax = (WIN_W - WIN_W /10) / (info->xmax - info->xmin);
+	info->ymax = (WIN_H - WIN_H /4) / (info->ymax - info->ymin);
+//	info->xmax = 1; 
+//	info->ymax = 1; 
+}
+void	calc_coord(t_info *info)
+{
+	t_room *tmp;
+
+	scale (info);
+	tmp = info->room;
 	while (tmp)
 	{
-		tmp->x = 100 + (tmp->x - xmin) * x_size * 5 / 8;
-		tmp->y = 200 + ((tmp->y - ymin) * y_size / 2);
+		tmp->x = 100 + (tmp->x - info->xmin) * info->xmax * 5 / 8;
+		tmp->y = 200 + ((tmp->y - info->ymin) * info->ymax / 2);
 		tmp = tmp->next;
 	}
 }
@@ -210,7 +213,6 @@ void	draw_rooms(t_mlx *mlx, t_info *info)
 	calc_coord(info);
 	while (tmp)
 	{
-		ft_putendl("\nroom");
 		while (tmp->links[i])
 		{
 			if (!tmp->links[i]->visited)
@@ -218,9 +220,9 @@ void	draw_rooms(t_mlx *mlx, t_info *info)
 			i++;
 		}
 		if (tmp->start)
-		draw_room(mlx->img.img, tmp->x, tmp->y, 0x0B5394);
+		draw_room(mlx->img.img, tmp->x, tmp->y, 0x8C5226);
 		else if (tmp->end)
-		draw_room(mlx->img.img, tmp->x, tmp->y, 0x990000);
+		draw_room(mlx->img.img, tmp->x, tmp->y, 0xBA966B);
 		else
 		draw_room(mlx->img.img, tmp->x, tmp->y, 0x230f0f);
 
