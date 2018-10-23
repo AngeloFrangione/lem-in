@@ -1,0 +1,25 @@
+13
+##start
+a 2 3
+b 3 4
+k 8 8
+##end
+c 4 5
+a-b
+b-c
+c-a
+k-b
+
+L1-c
+L2-c
+L3-c
+L4-c
+L5-c
+L6-c
+L7-c
+L8-c
+L9-c
+L10-c
+L11-c
+L12-c
+L13-c

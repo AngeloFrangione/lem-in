@@ -6,7 +6,7 @@
 #    By: alanter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/18 11:26:55 by alanter           #+#    #+#              #
-#    Updated: 2018/10/23 16:34:12 by alanter          ###   ########.fr        #
+#    Updated: 2018/10/23 18:12:47 by alanter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,8 @@ SRC_FILES =	main.c \
 			tools_links.c \
 			tools_rooms.c \
 			window.c \
-			draw.c
+			draw.c \
+			tools_printants.c
 SRCS = $(addprefix $(SRC_PATH), $(SRC_FILES))
 
 ######################## OBJECTS ########################
