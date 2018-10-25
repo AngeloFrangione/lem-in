@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 16:39:17 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/23 17:55:14 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/24 22:59:40 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,34 @@
 # define WIN_W 1350
 # define WIN_H 780
 
-typedef struct	s_img
+typedef struct		s_img
 {
 	void			*img_ptr;
 	unsigned int	*img;
+	char			*rand;
 	int				size_l;
 	int				bpp;
 	int				endian;
-}				t_img;
+}					t_img;
 
-typedef struct	s_mlx
+typedef struct		s_mlx
 {
-	void		*mlx_ptr;
-	void		*win;
-	t_img		img;
-	int			speed;
-	int			nb_inst;
-	int			menu;
-}				t_mlx;
+	struct s_info	*info;
+	void			*mlx_ptr;
+	void			*win;
+	t_img			img;
+	int				speed;
+	int				nb_inst;
+	int				menu;
+}					t_mlx;
 
 void			*window(t_info *info);
 void			draw_str(t_mlx *mlx);
-void			draw_back(unsigned int *img);
+void			draw_back(t_img *img, int i);
 void			draw_rooms(t_mlx *mlx, t_info *info);
-void			colors(int key, t_mlx *mlx);
-void			colorfull(t_mlx *mlx);
 void			ft_new_image(t_mlx *mlx);
+void			calc_coord(t_info *info);
+void			draw_ants(t_mlx *mlx, t_info *info);
+void			move_ants(t_info *info);
 
 #endif

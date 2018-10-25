@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/23 18:50:29 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 02:04:11 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct		s_info
 	int				xmax;
 	int				ymin;
 	int				ymax;
-
 }					t_info;
 
 void				clean(t_info *info);

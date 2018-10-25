@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 17:15:09 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/23 18:50:33 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/24 09:22:45 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		transform(t_info *info, int size)
 		{
 			ft_set_path(info, &tmp, &end);
 			ft_putendl(info->file);
-		//	ft_print_lems(info, end, tmp);
+			ft_print_lems(info, end, tmp);
 		}
 		else
 		{
