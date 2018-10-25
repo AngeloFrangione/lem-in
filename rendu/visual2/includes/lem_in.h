@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/25 02:04:11 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 02:59:25 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_room
 	int				start;
 	int				end;
 	int				visited;
+	int				white;
 	int				x;
 	int				y;
 }					t_room;
@@ -58,6 +59,7 @@ typedef struct		s_info
 	int				xmax;
 	int				ymin;
 	int				ymax;
+	int				done;
 }					t_info;
 
 void				clean(t_info *info);
