@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/14 16:35:05 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/25 02:59:25 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 18:59:11 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_info
 	int				end;
 	int				error_no_exit;
 	int				nb_paths;
+	int				nb_inst;
 	int				xmin;
 	int				xmax;
 	int				ymin;
@@ -63,6 +64,7 @@ typedef struct		s_info
 }					t_info;
 
 void				clean(t_info *info);
+void				start_again(t_info *info);
 /*
 ** algo.c
 */

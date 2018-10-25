@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 08:57:22 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/25 03:01:57 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 19:15:39 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_str(t_mlx *mlx)
 	char	*nb_i;
 
 	c = 0x000040;
-	nb_i = ft_itoa(mlx->nb_inst);
+	nb_i = ft_itoa(mlx->info->nb_inst);
 	mlx_string_put(mlx->mlx_ptr, mlx->win, WIN_W - 70, WIN_H - 30, c, nb_i);
 	free(nb_i);
 	if (mlx->speed == 100000)

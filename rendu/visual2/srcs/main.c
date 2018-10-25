@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/13 15:01:33 by afrangio          #+#    #+#             */
-/*   Updated: 2018/10/24 22:47:44 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 19:15:38 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ void	clean(t_info *info)
 	}
 }
 
-static void start_again(t_info *info)
+void start_again(t_info *info)
 {
 	t_room *tmp;
 
 	tmp = info->room;
+	info->nb_inst = 0;
 	while (tmp)
 	{
 		if (tmp->start)
 			tmp->ant = info->ants;
-		else if (tmp->end)
+		else
 			tmp->ant = 0; 
 		tmp = tmp->next;
 	}

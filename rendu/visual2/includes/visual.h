@@ -6,7 +6,7 @@
 /*   By: alanter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/19 16:39:17 by alanter           #+#    #+#             */
-/*   Updated: 2018/10/24 22:59:40 by alanter          ###   ########.fr       */
+/*   Updated: 2018/10/25 18:58:22 by alanter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct		s_mlx
 	void			*win;
 	t_img			img;
 	int				speed;
-	int				nb_inst;
 	int				menu;
 }					t_mlx;
 
